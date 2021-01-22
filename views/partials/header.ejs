@@ -1,5 +1,5 @@
 <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <p class="h5 my-0 me-md-auto fw-normal">Elementi</p>
+    <p class="h5 my-0 me-md-auto fw-normal" id="brand"><a href="/">Elementi</a></p>
     <nav class="my-2 my-md-0 me-md-3">
 
         <!-- shopping cartu redz jebkurš, kopā ar login/register pogām-->
@@ -15,15 +15,16 @@
             Ja ielogojas admins tad redz tikai admina vārdu un Manage linkus
         -->
         <a class="isAdmin"><strong>Martins Skinkis <span>- Admin</span></strong></a>
-        <a class="p-2 text-dark isAdmin" href="#">Manage orders</a>
-        <a class="p-2 text-dark isAdmin" href="#">Manage products</a>
+        <a class="p-2 btn btn-outline-secondary btn-sm isAdmin" href="/manage/orders">Manage
+            orders</a>
+        <a class="p-2 btn btn-outline-secondary btn-sm isAdmin" href="/manage/products">Manage products</a>
 
     </nav>
     <div class="isNotLogged">
-        <a class="btn btn-outline-primary btn-sm" href="#">Login</a>
-        <a class="btn btn-outline-primary btn-sm" href="#">Register</a>
+        <a class="btn btn-outline-primary btn-sm" href="/auth/login">Login</a>
+        <a class="btn btn-outline-primary btn-sm" href="/auth/register">Register</a>
     </div>
     <div class="isLogged">
-        <a class="btn btn-outline-primary btn-sm" href="#">Logout</a>
+        <a class="btn btn-outline-primary btn-sm">Logout</a>
     </div>
 </header>

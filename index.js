@@ -40,15 +40,16 @@ db.once("open", () => {
 ROUTES
 ************* */
 const adminRoutes = require("./routes/admin");
+const authRoutes = require("./routes/auth");
+const productsRoutes = require("./routes/products");
+const homeRoutes = require("./routes/home");
 
-
-
+app.use("/", homeRoutes);
 app.use("/manage", adminRoutes);
+app.use("/auth", authRoutes);
+app.use("/products", productsRoutes);
 
 
-app.get("/", (req, res) => {
-    res.render("index")
-})
 
 app.listen(3000, () => {
     console.log("App started on port 3000")

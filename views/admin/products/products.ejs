@@ -1,3 +1,94 @@
 <% layout("/layout/boilerplate.ejs") %>
 
-    Products page
+    <div class="container">
+        <div class="row manage_products">
+
+            <!-- ********************************
+                        add new product
+            ************************************** -->
+            <div class="col-6">
+
+                <div class="add_new_product">
+                    <form action="/manage/products" method="post" class="needs-validation" novalidate>
+
+                        <!-- to add model and brand -->
+                        <div class="model_container form-group">
+                            <div class="mb-3">
+                                <label for="brand" class="form-label">Brand</label>
+                                <input name="newProduct[brand]" type="text" class="form-control" id="brand"
+                                    placeholder="Brand" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="model" class="form-label">Model</label>
+                                <input name="newProduct[model]" type="text" class="form-control" id="model"
+                                    placeholder="Model" required>
+                            </div>
+                        </div>
+
+                        <!-- to add prices-->
+                        <div class="price_container">
+                            <div class="mb-3">
+                                <label for="newPrice" class="form-label">New price</label>
+                                <input name="newProduct[newPrice]" type="number" class="form-control" id="newPrice"
+                                    placeholder="0" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="oldPrice" class="form-label">Old price</label>
+                                <input name="newProduct[oldPrice]" type="number" class="form-control" id="oldPrice"
+                                    placeholder="0" required>
+                            </div>
+                        </div>
+
+                        <!-- to add category -->
+                        <div class="category_container">
+                            <div class="mb-3">
+                                <select name="newProduct[category]" class="form-select form-control"
+                                    aria-label="Default select example" required>
+                                    <option value="">Select category</option>
+                                    <% for(let i of categories) { %>
+                                        <option value="<%= i.category %>">
+                                            <%= i.category %>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- to ad description -->
+                        <div class="textarea_container">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea name="newProduct[description]" id="description" cols="43" rows="4"
+                                required></textarea>
+                        </div>
+
+                        <div class="button_container">
+                            <button type="submit" class="btn btn-primary d-inline-block">Create product</button>
+                        </div>
+                    </form>
+                </div>
+
+
+                <!-- ********************************
+                        add new category
+            ************************************** -->
+                <div class="add_new_category">
+                    <form action="/manage/products" method="post" class="needs-validation" novalidate>
+                        <label class="form-label" for="newCategory">New category</label>
+                        <div class="create_category_container">
+                            <input name="newCategory" type="text" class="form-control" name="newCategory"
+                                id="newCategory" required>
+                            <button class="btn btn-secondary">Create</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- view added product -->
+            <div class="col-6 view_product">
+                Produkts
+            </div>
+
+        </div>
+    </div>
