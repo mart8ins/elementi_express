@@ -7,36 +7,34 @@
 
                 <!-- *************************************** NAVIGĀCIJA ********************************-->
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <!-- LEDUSSKAPIS-->
-                    <a class="nav-link active" id="v-pills-fridge-tab" data-bs-toggle="pill" href="#v-pills-fridge"
+                    <!-- AKTĪVĀ SADAĻA - IZPĀRDOŠANA -->
+                    <a class="nav-link active" id="v-pills-top
+                        -tab" data-bs-toggle="pill"
+                        href="#v-pills-top"
                         role="tab"
-                        aria-controls="v-pills-fridge" aria-selected="true">Ledusskapji</a>
+                        aria-controls="v-pills-top" aria-selected="true">
+                        IZPĀRDOŠANA
+                    </a>
 
-                    <!-- CEPEŠKRĀSNIS-->
-                    <a class="nav-link" id="v-pills-oven-tab" data-bs-toggle="pill" href="#v-pills-oven" role="tab"
-                        aria-controls="v-pills-oven" aria-selected="false">Cepeškrāsnis</a>
+                    <!-- NEAKTĪVĀ SADAĻAS - KATEGORIJAS -->
+                    <% for(let i of categories) {%>
+                        <a class="nav-link" id="v-pills-<%= i._id %>
+                                        -tab" data-bs-toggle="pill"
+                            href="#v-pills-<%= i._id %>"
+                            role="tab"
+                            aria-controls="v-pills-<%= i._id %>" aria-selected="true">
 
-                    <!-- PlĪTS VIRSMAS-->
-                    <a class="nav-link" id="v-pills-hob-tab" data-bs-toggle="pill" href="#v-pills-hob" role="tab"
-                        aria-controls="v-pills-hob" aria-selected="false">Plīts virsmas</a>
-
-
-                    <!-- TRAUKU MAŠĪNAS-->
-                    <a class="nav-link" id="v-pills-dish-tab" data-bs-toggle="pill" href="#v-pills-dish" role="tab"
-                        aria-controls="v-pills-dish" aria-selected="false">Trauku mašīnas</a>
-
-                    <!-- TVAIKA NOSŪCĒJS-->
-                    <a class="nav-link" id="v-pills-hood-tab" data-bs-toggle="pill" href="#v-pills-hood" role="tab"
-                        aria-controls="v-pills-hood" aria-selected="false">Tvaika nosūcēji</a>
+                            <%= i.category %>
+                        </a>
+                        <% } %>
                 </div>
 
                 <!-- *************************************** PRODUKTI *********************************************-->
-                <div class="tab-content" id="v-pills-tabContent">
 
-                    <!-- LEDUSSKAPIS-->
-                    <div class="tab-pane fade show active" id="v-pills-fridge" role="tabpanel"
-                        aria-labelledby="v-pills-fridge-tab">
-                        <!-- loopa sākums -->
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-top"
+                        role="tabpanel"
+                        aria-labelledby="v-pills-top-tab">
                         <div class="card_container">
                             <!-- produkta kartiņa-->
                             <div class="card" style="width: 15rem; max-height: 450px;">
@@ -44,100 +42,160 @@
                                     <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Bosch KGV36VLEAS</h5>
-                                    <p class="card-text">A+++ klases
-                                        leduskapis
+                                    <h5 class="card-title">
+                                        brand
+                                        model
+                                    </h5>
+                                    <p class="card-text">
+                                        description
+
                                     </p>
-                                    <a href="/products/3" class="btn btn-primary">Info</a>
+                                    <a href="/products/3"
+                                        class="btn btn-primary">Info</a>
                                 </div>
                             </div>
                         </div>
-                        <!-- loopa beigas-->
                     </div>
 
-                    <!-- CEPEŠKRĀSNIS-->
-                    <div class="tab-pane fade" id="v-pills-oven" role="tabpanel" aria-labelledby="v-pills-oven-tab">
-                        <!-- loopa sākums -->
-                        <div class="card_container">
-                            <!-- produkta kartiņa-->
-                            <div class="card" style="width: 15rem; max-height: 450px;">
-                                <div class="product_image_container">
-                                    <img src="/images/oven.jpg" class="card-img-top" alt="oven">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Bosch HBG6764S6B</h5>
-                                    <p class="card-text">A klases
-                                        cepešrkāsns
-                                    </p>
-                                    <a href="/products/3" class="btn btn-primary">Info</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- loopa beigas-->
-                    </div>
 
-                    <!-- PlĪTS VIRSMAS-->
-                    <div class="tab-pane fade" id="v-pills-hob" role="tabpanel" aria-labelledby="v-pills-hob-tab">
-                        <!-- loopa sākums -->
-                        <div class="card_container">
-                            <!-- produkta kartiņa-->
-                            <div class="card" style="width: 15rem; max-height: 450px;">
-                                <div class="product_image_container">
-                                    <img src="/images/hob.jpg" class="card-img-top" alt="hob">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Bosch PUE611BF1B</h5>
-                                    <p class="card-text">Iebūvējama plīts virsma
-                                    </p>
-                                    <a href="/products/3" class="btn btn-primary">Info</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- loopa beigas-->
-                    </div>
 
-                    <!-- TRAUKU MAŠĪNAS-->
-                    <div class="tab-pane fade" id="v-pills-dish" role="tabpanel" aria-labelledby="v-pills-dish-tab">
-                        <!-- loopa sākums -->
-                        <div class="card_container">
-                            <!-- produkta kartiņa-->
-                            <div class="card" style="width: 15rem; max-height: 450px;">
-                                <div class="product_image_container">
-                                    <img src="/images/dish.jpg" class="card-img-top" alt="dish">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Bosch SMV24AX02E</h5>
-                                    <p class="card-text">Iebūvējama trauku mazgājamā mašīna
-                                    </p>
-                                    <a href="/products/3" class="btn btn-primary">Info</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- loopa beigas-->
-                    </div>
+                    <% for(let i of categories) {%>
+                        <div class="tab-pane fade show" id="v-pills-<%= i._id %>"
+                            role="tabpanel"
+                            aria-labelledby="v-pills-<%= i._id %>-tab">
+                            <div class="card_container">
+                                <% for(let j of i.products) {%>
+                                    <!-- produkta kartiņa-->
+                                    <div class="card" style="width: 15rem; max-height: 450px;">
+                                        <div class="product_image_container">
+                                            <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <%= j.brand %>
+                                                    <%= j.model %>
+                                            </h5>
+                                            <p class="card-text">
+                                                <%= j.description %>
 
-                    <!-- TVAIKA NOSŪCĒJS-->
-                    <div class="tab-pane fade" id="v-pills-hood" role="tabpanel" aria-labelledby="v-pills-hood-tab">
-                        <!-- loopa sākums -->
-                        <div class="card_container">
-                            <!-- produkta kartiņa-->
-                            <div class="card" style="width: 15rem; max-height: 450px;">
-                                <div class="product_image_container">
-                                    <img src="/images/hood.jpg" class="card-img-top" alt="dish">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Bosch DWK095G60</h5>
-                                    <p class="card-text">Sienas tvaika nosūcējs
-                                    </p>
-                                    <a href="/products/3" class="btn btn-primary">Info</a>
-                                </div>
+                                            </p>
+                                            <a href="/products/<%= j._id %>"
+                                                class="btn btn-primary">Info</a>
+                                        </div>
+                                    </div>
+                                    <% } %>
+
+
                             </div>
                         </div>
-                        <!-- loopa beigas-->
-                    </div>
+                        <% } %>
+
+                            <!-- LEDUSSKAPIS-->
+                            <!-- <div class="tab-pane fade show active" id="v-pills-fridge" role="tabpanel"
+                                        aria-labelledby="v-pills-fridge-tab">
+                                        
+                                        <div class="card_container">
+                                            
+                                            <div class="card" style="width: 15rem; max-height: 450px;">
+                                                <div class="product_image_container">
+                                                    <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Bosch KGV36VLEAS</h5>
+                                                    <p class="card-text">A+++ klases
+                                                        leduskapis
+                                                    </p>
+                                                    <a href="/products/3" class="btn btn-primary">Info</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    </div> -->
+
+                            <!-- CEPEŠKRĀSNIS-->
+                            <!-- <div class="tab-pane fade" id="v-pills-oven" role="tabpanel"
+                                        aria-labelledby="v-pills-oven-tab">
+                                        
+                                        <div class="card_container">
+                                           
+                                            <div class="card" style="width: 15rem; max-height: 450px;">
+                                                <div class="product_image_container">
+                                                    <img src="/images/oven.jpg" class="card-img-top" alt="oven">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Bosch HBG6764S6B</h5>
+                                                    <p class="card-text">A klases
+                                                        cepešrkāsns
+                                                    </p>
+                                                    <a href="/products/3" class="btn btn-primary">Info</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    </div> -->
+
+                            <!-- PlĪTS VIRSMAS-->
+                            <!-- <div class="tab-pane fade" id="v-pills-hob" role="tabpanel"
+                                        aria-labelledby="v-pills-hob-tab">
+                                        
+                                        <div class="card_container">
+                                            
+                                            <div class="card" style="width: 15rem; max-height: 450px;">
+                                                <div class="product_image_container">
+                                                    <img src="/images/hob.jpg" class="card-img-top" alt="hob">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Bosch PUE611BF1B</h5>
+                                                    <p class="card-text">Iebūvējama plīts virsma
+                                                    </p>
+                                                    <a href="/products/3" class="btn btn-primary">Info</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    </div> -->
+
+                            <!-- TRAUKU MAŠĪNAS-->
+                            <!-- <div class="tab-pane fade" id="v-pills-dish" role="tabpanel"
+                                        aria-labelledby="v-pills-dish-tab">
+                                        
+                                        <div class="card_container">
+                                            
+                                            <div class="card" style="width: 15rem; max-height: 450px;">
+                                                <div class="product_image_container">
+                                                    <img src="/images/dish.jpg" class="card-img-top" alt="dish">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Bosch SMV24AX02E</h5>
+                                                    <p class="card-text">Iebūvējama trauku mazgājamā mašīna
+                                                    </p>
+                                                    <a href="/products/3" class="btn btn-primary">Info</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    </div> -->
+
+                            <!-- TVAIKA NOSŪCĒJS-->
+                            <!-- <div class="tab-pane fade" id="v-pills-hood" role="tabpanel"
+                                        aria-labelledby="v-pills-hood-tab">
+                                        
+                                        <div class="card_container">
+                                            
+                                            <div class="card" style="width: 15rem; max-height: 450px;">
+                                                <div class="product_image_container">
+                                                    <img src="/images/hood.jpg" class="card-img-top" alt="dish">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Bosch DWK095G60</h5>
+                                                    <p class="card-text">Sienas tvaika nosūcējs
+                                                    </p>
+                                                    <a href="/products/3" class="btn btn-primary">Info</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
                 </div>
-
-
             </div>
         </div>
     </div>
