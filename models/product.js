@@ -3,21 +3,27 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
     brand: {
-        type: String
+        type: String,
+        required: true
     },
     model: {
-        type: String
+        type: String,
+        required: true
     },
     price: {
         new: {
-            type: Number
+            type: Number,
+            min: 0,
+            required: true
         },
         old: {
-            type: Number
+            type: Number,
+            min: 0
         }
     },
     description: {
-        type: String
+        type: String,
+        required: true
     },
     onSale: {
         type: Boolean

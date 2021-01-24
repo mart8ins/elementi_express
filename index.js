@@ -39,23 +39,45 @@ db.once("open", () => {
     console.log("Connection to database successful!");
 });
 
+/******************
+ERROR HANDLING SETUP
+********************/
+const AppError = require("./utils/AppError");
+
 
 /* *********
-ROUTES
+ROUTES IMPORTS 
 ************* */
 const adminRoutes = require("./routes/admin");
 const authRoutes = require("./routes/auth");
 const productsRoutes = require("./routes/products");
 const homeRoutes = require("./routes/home");
 
+
+/* *********
+ROUTES USE
+************* */
 app.use("/", homeRoutes);
 app.use("/manage", adminRoutes);
 app.use("/auth", authRoutes);
 app.use("/products", productsRoutes);
 
-// PAGE NOT FOUND PAGE
+
+/* *********
+ERROR MIDLLEWARE 
+************* */
+app.use((err, req, res, next) => {
+    console.log(err)
+    const { message = "Something went wrong!", status = 500 } = err;
+    res.render("error", { message, status })
+    next(err);
+})
+
+/* *********
+ IF PAGE NOT FOUND PAGE 
+************* */
 app.use((req, res) => {
-    res.send("Not found!")
+    throw new AppError("Page no found", 404)
 })
 
 
