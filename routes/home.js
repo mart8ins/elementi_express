@@ -5,7 +5,6 @@ const Category = require("../models/category");
 
 router.get("/", async (req, res) => {
     const categories = await Category.find({}).populate("products");
-    console.log(categories)
     res.render("products/index", { categories })
 })
 

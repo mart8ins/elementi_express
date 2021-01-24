@@ -32,33 +32,41 @@
                 <!-- *************************************** PRODUKTI *********************************************-->
 
                 <div class="tab-content" id="v-pills-tabContent">
+
+                    <!-- IZPĀRDOŠANAS PRODUKTI-->
                     <div class="tab-pane fade show active" id="v-pills-top"
                         role="tabpanel"
                         aria-labelledby="v-pills-top-tab">
                         <div class="card_container">
                             <!-- produkta kartiņa-->
-                            <div class="card" style="width: 15rem; max-height: 450px;">
-                                <div class="product_image_container">
-                                    <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        brand
-                                        model
-                                    </h5>
-                                    <p class="card-text">
-                                        description
+                            <% for(let o of categories) {%>
+                                <% for(let s of o.products) {%>
+                                    <% if(s.onSale && s.onSale==true) {%>
+                                        <div class="card" style="width: 15rem; max-height: 450px;">
+                                            <div class="product_image_container">
+                                                <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <%= s.brand %>
+                                                        <%= s.model %>
+                                                </h5>
+                                                <p class="card-text">
+                                                    <%= s.description %>
+                                                </p>
+                                                <a href="/products/<%= s._id %>"
+                                                    class="btn btn-primary">Info</a>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                                                <% } %>
 
-                                    </p>
-                                    <a href="/products/3"
-                                        class="btn btn-primary">Info</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
 
-
+                    <!-- VISI PRODUKTI -->
                     <% for(let i of categories) {%>
                         <div class="tab-pane fade show" id="v-pills-<%= i._id %>"
                             role="tabpanel"
@@ -89,112 +97,6 @@
                             </div>
                         </div>
                         <% } %>
-
-                            <!-- LEDUSSKAPIS-->
-                            <!-- <div class="tab-pane fade show active" id="v-pills-fridge" role="tabpanel"
-                                        aria-labelledby="v-pills-fridge-tab">
-                                        
-                                        <div class="card_container">
-                                            
-                                            <div class="card" style="width: 15rem; max-height: 450px;">
-                                                <div class="product_image_container">
-                                                    <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
-                                                </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Bosch KGV36VLEAS</h5>
-                                                    <p class="card-text">A+++ klases
-                                                        leduskapis
-                                                    </p>
-                                                    <a href="/products/3" class="btn btn-primary">Info</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                    </div> -->
-
-                            <!-- CEPEŠKRĀSNIS-->
-                            <!-- <div class="tab-pane fade" id="v-pills-oven" role="tabpanel"
-                                        aria-labelledby="v-pills-oven-tab">
-                                        
-                                        <div class="card_container">
-                                           
-                                            <div class="card" style="width: 15rem; max-height: 450px;">
-                                                <div class="product_image_container">
-                                                    <img src="/images/oven.jpg" class="card-img-top" alt="oven">
-                                                </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Bosch HBG6764S6B</h5>
-                                                    <p class="card-text">A klases
-                                                        cepešrkāsns
-                                                    </p>
-                                                    <a href="/products/3" class="btn btn-primary">Info</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                    </div> -->
-
-                            <!-- PlĪTS VIRSMAS-->
-                            <!-- <div class="tab-pane fade" id="v-pills-hob" role="tabpanel"
-                                        aria-labelledby="v-pills-hob-tab">
-                                        
-                                        <div class="card_container">
-                                            
-                                            <div class="card" style="width: 15rem; max-height: 450px;">
-                                                <div class="product_image_container">
-                                                    <img src="/images/hob.jpg" class="card-img-top" alt="hob">
-                                                </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Bosch PUE611BF1B</h5>
-                                                    <p class="card-text">Iebūvējama plīts virsma
-                                                    </p>
-                                                    <a href="/products/3" class="btn btn-primary">Info</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                    </div> -->
-
-                            <!-- TRAUKU MAŠĪNAS-->
-                            <!-- <div class="tab-pane fade" id="v-pills-dish" role="tabpanel"
-                                        aria-labelledby="v-pills-dish-tab">
-                                        
-                                        <div class="card_container">
-                                            
-                                            <div class="card" style="width: 15rem; max-height: 450px;">
-                                                <div class="product_image_container">
-                                                    <img src="/images/dish.jpg" class="card-img-top" alt="dish">
-                                                </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Bosch SMV24AX02E</h5>
-                                                    <p class="card-text">Iebūvējama trauku mazgājamā mašīna
-                                                    </p>
-                                                    <a href="/products/3" class="btn btn-primary">Info</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                    </div> -->
-
-                            <!-- TVAIKA NOSŪCĒJS-->
-                            <!-- <div class="tab-pane fade" id="v-pills-hood" role="tabpanel"
-                                        aria-labelledby="v-pills-hood-tab">
-                                        
-                                        <div class="card_container">
-                                            
-                                            <div class="card" style="width: 15rem; max-height: 450px;">
-                                                <div class="product_image_container">
-                                                    <img src="/images/hood.jpg" class="card-img-top" alt="dish">
-                                                </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Bosch DWK095G60</h5>
-                                                    <p class="card-text">Sienas tvaika nosūcējs
-                                                    </p>
-                                                    <a href="/products/3" class="btn btn-primary">Info</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                 </div>
             </div>
         </div>

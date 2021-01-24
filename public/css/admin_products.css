@@ -28,6 +28,11 @@
     width: 100%;
 }
 
+.category_onSale_container {
+    display: flex;
+    justify-content: space-around;
+}
+
 /* CREATE CATEGORY */
 .add_new_category {
     border: 1px solid black;
@@ -38,4 +43,19 @@
 .add_new_category form .create_category_container {
     display: flex;
     width: 80%;
+}
+
+/* CHANGE CATEGORY */
+.avaliable_categories {
+    display: flex;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0.219);
+}
+.inputs_for_changing_category {
+    display: flex;
+    padding: 10px;
+}
+
+.current_category {
+    font-weight: bold;
 }

@@ -41,7 +41,7 @@
                         </div>
 
                         <!-- to add category -->
-                        <div class="category_container">
+                        <div class="category_onSale_container">
                             <div class="mb-3">
                                 <select name="newProduct[category]" class="form-select form-control"
                                     aria-label="Default select example" required>
@@ -52,6 +52,13 @@
                                         </option>
                                         <% } %>
                                 </select>
+                            </div>
+                            <div class="form-check">
+                                <input name="newProduct[onSale]" class="form-check-input" type="checkbox" value="true"
+                                    id="onSale">
+                                <label class="form-check-label" for="onSale">
+                                    Izpārdošanas produkts
+                                </label>
                             </div>
                         </div>
 
@@ -81,6 +88,34 @@
                             <button class="btn btn-secondary">Create</button>
                         </div>
                     </form>
+
+                    <!-- list all avaliable categories with option to edit-->
+                    <div>
+                        <h4>All avaliable categories</h4>
+
+                        <% for(let i of categories) {%>
+                            <div class="avaliable_categories">
+                                <form action="/manage/products?_method=PATCH" method="post">
+                                    <div class="inputs_for_changing_category">
+                                        <input class="form-control current_category" readonly type="text"
+                                            value="<%= i.category %>"
+                                            name="categoryToChange[current]">
+                                        <input class="form-control" type="text" value="<%= i.category %>"
+                                            name="categoryToChange[new]">
+                                        <button class="btn btn-secondary">Change</button>
+                                    </div>
+                                </form>
+                                <!-- Nodzēst kategoriju -->
+                                <form action="/manage/products?_method=DELETE" method="post">
+                                    <!-- <input type="button" class="btn btn-danger btn-sm" value="Delete"
+                                        name="deleteCategory[<%= i._id %>]"> -->
+                                    <button class="btn btn-danger btn-sm"
+                                        name="categoryID" value="<%= i._id %>">Delete</button>
+                                </form>
+                            </div>
+                            <% } %>
+
+                    </div>
                 </div>
 
             </div>

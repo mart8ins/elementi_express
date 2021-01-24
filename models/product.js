@@ -19,6 +19,9 @@ const productSchema = new Schema({
     description: {
         type: String
     },
+    onSale: {
+        type: Boolean
+    },
     category: {
         type: Schema.Types.ObjectId, ref: "Category"
     }

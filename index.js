@@ -9,16 +9,20 @@ express setup
 ************* */
 const ejsMate = require("ejs-mate"); // template funkcijas
 const path = require("path");
+const methodOverride = require("method-override");
+const morgan = require("morgan");
 app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "/views")); // uzstāda to, ka tiek meklēts faili iekš views foldera
 app.set("view engine", "ejs"); // specificē faila extension, lai turpmāk nav jānorāda
+
 
 /* *********
 middleware - operācijas, kas tiek sauktas starp request un response objektiem
 ************* */
 app.use(express.urlencoded({ extended: true })); // request body parsers
 app.use(express.static("public")); // static failu servēšana, public - root folderis
-
+app.use(methodOverride("_method")); // lai var izmantot update and delete verbus
+app.use(morgan('tiny')) // izlogo konkrētus propertijus konsolē
 
 /* *********
 MONGO datu bāze
@@ -49,6 +53,10 @@ app.use("/manage", adminRoutes);
 app.use("/auth", authRoutes);
 app.use("/products", productsRoutes);
 
+// PAGE NOT FOUND PAGE
+app.use((req, res) => {
+    res.send("Not found!")
+})
 
 
 app.listen(3000, () => {
