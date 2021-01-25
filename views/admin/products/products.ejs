@@ -6,7 +6,7 @@
             <!-- ********************************
                         add new product
             ************************************** -->
-            <div class="col-6">
+            <div class="col-5">
 
                 <div class="add_new_product">
                     <form action="/manage/products" method="post" class="needs-validation" novalidate>
@@ -121,9 +121,42 @@
 
             </div>
 
-            <!-- view added product -->
-            <div class="col-6 view_product">
-                Produkts
+            <!-- view all added products in database -->
+            <div class="col-7">
+                <div>
+                    <input type="text" disabled>
+                    <button>Search by model</button>
+                </div>
+
+
+                <% for(let product of products) {%>
+
+                    <div class="row product_to_edit">
+                        <div class="col-2 category">
+                            Kategorija
+                        </div>
+                        <div class="col-5 brand_model">
+                            <%= product.brand %>
+                                <%= product.model %>
+                        </div>
+                        <div class="col-2 new_price">
+                            New price: <span>
+                                <%= product.price.new %>
+                            </span>
+                        </div>
+                        <div class="col-2 old_price">
+                            Old price: <span>
+                                <%= product.price.old %>
+                            </span>
+                        </div>
+                        <div class="col-1 buttons">
+                            <a href="#"><button class="btn btn-sm btn-secondary">Edit</button></a>
+                        </div>
+                    </div>
+                    <% } %>
+
+
+
             </div>
 
         </div>

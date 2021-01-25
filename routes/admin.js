@@ -16,7 +16,7 @@ router.get("/products", catchAsync(async (req, res, next) => {
     const categories = await Category.find({}); // to render all added categories to new product form
     const products = await Product.find({}).populate("category");
     console.log(products)
-    res.render("admin/products/products", { categories })
+    res.render("admin/products/products", { categories, products })
 }))
 
 /* to add new product or category */
@@ -65,7 +65,7 @@ router.post("/products", catchAsync(async (req, res, next) => {
             onSale: newProduct.onSale,
             category: cat // reference to category
         })
-        cat.products.push(createdProduct); // pushing in current category products array a reference to created product
+        cat.products.unshift(createdProduct); // pushing in current category products array a reference to created product
         await cat.save();
         await createdProduct.save();
 

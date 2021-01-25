@@ -59,3 +59,53 @@
 .current_category {
     font-weight: bold;
 }
+
+/* ALL MODELS VIEW */
+
+.product_to_edit {
+    border: 1px solid black;
+    margin: 2px;
+    padding: 2px;
+}
+
+.product_to_edit:hover {
+    background-color: rgb(226, 219, 219);
+    cursor: pointer;
+}
+
+.product_to_edit {
+    place-items: center;
+}
+
+.product_to_edit .category {
+    font-style: italic;
+}
+
+.product_to_edit .brand_model {
+    font-weight: bold;
+}
+
+.product_to_edit .new_price {
+    color: white;
+    background-color: rgb(132, 170, 135);
+    padding: 5px;
+    text-align: center;
+}
+
+.product_to_edit .old_price {
+    color: white;
+    background-color: rgb(175, 139, 139);
+    padding: 5px;
+    text-align: center;
+}
+
+.product_to_edit .new_price span, .old_price span {
+font-weight: bold;
+color: black;
+}
+
+.product_to_edit .buttons {
+    padding: 0;
+    text-align: right;
+}
+
