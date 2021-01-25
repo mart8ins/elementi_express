@@ -133,7 +133,7 @@
 
                     <div class="row product_to_edit">
                         <div class="col-2 category">
-                            Kategorija
+                            ?Kategorija?
                         </div>
                         <div class="col-5 brand_model">
                             <%= product.brand %>
@@ -150,13 +150,12 @@
                             </span>
                         </div>
                         <div class="col-1 buttons">
-                            <a href="#"><button class="btn btn-sm btn-secondary">Edit</button></a>
+                            <a href="/manage/products/<%= product._id %>/edit"><button
+                                    class="btn btn-sm btn-secondary">Edit</button></a>
                         </div>
+
                     </div>
                     <% } %>
-
-
-
             </div>
 
         </div>

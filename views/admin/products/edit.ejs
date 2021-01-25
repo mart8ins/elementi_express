@@ -1,0 +1,84 @@
+<% layout("/layout/boilerplate.ejs") %>
+
+    <div class="container">
+        <div class="add_new_product">
+            <form action="/manage/products?id=<%= product._id %>&_method=PATCH" method="post" class="needs-validation"
+                novalidate>
+
+                <!-- to add model and brand -->
+                <div class="model_container form-group">
+                    <div class="mb-3">
+                        <label for="brand" class="form-label">Brand</label>
+                        <input name="editProduct[brand]" type="text" class="form-control" id="brand"
+                            value="<%= product.brand %>" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="model" class="form-label">Model</label>
+                        <input name="editProduct[model]" type="text" class="form-control" id="model"
+                            value="<%= product.model %>" required>
+                    </div>
+                </div>
+
+                <!-- to add prices-->
+                <div class="price_container">
+                    <div class="mb-3">
+                        <label for="newPrice" class="form-label">New price</label>
+                        <input name="editProduct[newPrice]" type="number" class="form-control" id="newPrice"
+                            placeholder="<%= product.price.new %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="oldPrice" class="form-label">Old price</label>
+                        <input name="editProduct[oldPrice]" type="number" class="form-control" id="oldPrice"
+                            placeholder="<%= product.price.old %>" required>
+                    </div>
+                </div>
+
+                <!-- to add category -->
+                <div class="category_onSale_container">
+                    <div class="mb-3">
+                        <select name="editProduct[category]" class="form-select form-control"
+                            aria-label="Default select example" required>
+                            <option value="<%= product.category.category %>">
+                                <%= product.category.category %>
+                            </option>
+                            <% for(let i of categories) { %>
+                                <% if(product.category.category !=i.category) {%>
+                                    <option value="<%= i.category %>">
+                                        <%= i.category %>
+                                    </option>
+                                    <% } %>
+                                        <% } %>
+                        </select>
+                    </div>
+                    <div class="form-check">
+                        <% if(product.onSale) {%>
+                            <input name="editProduct[onSale]" class="form-check-input" type="checkbox"
+                                value="<%= product.onSale %>"
+                                id="onSale" checked>
+                            <% } else {%>
+                                <input name="editProduct[onSale]" class="form-check-input" type="checkbox"
+                                    value="true"
+                                    id="onSale">
+                                <% } %>
+
+                                    <label class="form-check-label" for="onSale">
+                                        Izpārdošanas produkts
+                                    </label>
+                    </div>
+                </div>
+
+                <!-- to add description -->
+                <div class="textarea_container">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" name="editProduct[description]" id="description" cols="43"
+                        rows="4"
+                        required><%= product.description %></textarea>
+                </div>
+
+                <div class="button_container">
+                    <button type="submit" class="btn btn-secondary d-inline-block">Edit product</button>
+                </div>
+            </form>
+        </div>
+    </div>
