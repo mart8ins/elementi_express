@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const AppError = require("../utils/AppError");
 const catchAsync = require("../utils/catchAsync");
+const Joi = require("Joi");
 
 // categries seed data
 const category = require("../seed/category");
@@ -13,11 +14,35 @@ const Category = require("../models/category");
 
 router.get("/products", catchAsync(async (req, res, next) => {
     const categories = await Category.find({}); // to render all added categories to new product form
+    const products = await Product.find({}).populate("category");
+    console.log(products)
     res.render("admin/products/products", { categories })
 }))
 
 /* to add new product or category */
 router.post("/products", catchAsync(async (req, res, next) => {
+    //validation for input value when creating new product or category, usin "Joi" dependencie
+    const adminProductCategorySchema = Joi.object({
+        newProduct: Joi.object({
+            brand: Joi.string().min(3).alphanum().required(),
+            model: Joi.string().min(2).alphanum().required(),
+            newPrice: Joi.number().min(0).required(),
+            oldPrice: Joi.number().min(0),
+            category: Joi.string().min(4),
+            onSale: Joi.boolean(),
+            description: Joi.string()
+        }),
+        newCategory: Joi.string().min(4)
+    })
+
+    const validationResult = adminProductCategorySchema.validate(req.body);
+    const { error } = validationResult; // error ir array ar objektiem, erroriem
+
+    if (error) {
+        const msg = error.details.map(el => el.message).join(","); // izmapojam cauri un atgriežam error msg, ja ir vairāki, tad join
+        throw new AppError(msg, 404)
+    }
+
     const { newProduct, newCategory } = req.body;
     // if new product category is created
     if (newCategory) {
@@ -50,6 +75,7 @@ router.post("/products", catchAsync(async (req, res, next) => {
 
 /* update category */
 router.patch("/products", catchAsync(async (req, res) => {
+    if (!req.body) throw new AppError("Cant update category, missing request data", 400);
     const { categoryToChange } = req.body;
     // change/update category name
     await Category.findOneAndUpdate({ category: categoryToChange.current }, { category: categoryToChange.new }, { useFindAndModify: false });
