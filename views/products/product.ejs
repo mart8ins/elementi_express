@@ -1,3 +1,52 @@
 <% layout("/layout/boilerplate.ejs") %>
 
-    produkta details
+    <div class="container product_details">
+        <div class="row top-row">
+            <div class="col-6">
+                <div class="product_image_container">
+                    <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="model">
+                    <p>
+                        <%= product.brand %>
+                            <strong>
+                                <%= product.model %>
+                            </strong>
+                    </p>
+                </div>
+                <div class="description">
+                    <p>
+                        <%= product.description %>
+                    </p>
+                </div>
+                <div class="price">
+                    <p class="new">
+                        <%= product.price.new %> &euro;
+                    </p>
+                    <p class="old">
+                        <%= product.price.old %> &euro;
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row bottom-row">
+            <div class="col-12 offset-3">
+                <div class="add_to_cart">
+                    <form action="" method="post">
+                        <div class="pluss_minuss">
+                            <!-- <span><i class="fas fa-minus-circle"></i></span> -->
+                            <label for="quantity">Quantity</label>
+                            <input name="newOrder[quantity]" id="quantity" class="form-control" type="text"
+                                placeholder="0">
+                            <!-- <span><i class="fa fa-plus-circle"></i></span></i> -->
+                        </div>
+                        <button class="btn btn-primary add_to_cart_btn">Pievienot grozam</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>

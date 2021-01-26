@@ -1,3 +1,4 @@
+/* product card */
 .card_container {
 display: flex;
 flex-wrap: wrap;
@@ -5,7 +6,43 @@ justify-content: flex-start;
 }
 .card {
     margin: 5px;
+    background-color: rgb(240, 230, 230);
+}
+.card:hover {
+    transform: scale(1.03);
+    background-color: rgb(197, 166, 166);
+}
+
+.card-title {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+    text-align: center;
 }
 .product_image_container {
-    padding: 20px;
+    padding: 10px;
+    
+}
+.product_image_container img {
+    border-radius: 10px;
+}
+
+
+.newPriceShow {
+    color: rgb(9, 184, 9);
+    background-color: white;
+    font-weight: bold;
+    font-size: 22px;
+padding: 5px;
+border-radius: 10px;
+    /* color: white; */
+}
+
+.oldPriceShow {
+    color: rgb(179, 125, 125);
+    font-weight: bold;
+    float: right;
+    text-decoration: line-through;
+    font-size: 20px;
 }

@@ -47,15 +47,24 @@
                                                 <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
                                             </div>
                                             <div class="card-body">
-                                                <h5 class="card-title">
+                                                <p class="card-title">
                                                     <%= s.brand %>
-                                                        <%= s.model %>
-                                                </h5>
+                                                        <strong>
+                                                            <%= s.model %>
+                                                        </strong>
+                                                </p>
                                                 <p class="card-text">
-                                                    <%= s.description %>
+                                                    Cena <span class="newPriceShow">
+                                                        <%= s.price.new %> &euro;
+                                                    </span>
+                                                    <% if(s.price.old) {%>
+                                                        <span class="oldPriceShow">
+                                                            <%= s.price.old %> &euro;
+                                                        </span>
+                                                        <% } %>
                                                 </p>
                                                 <a href="/products/<%= s._id %>"
-                                                    class="btn btn-primary">Info</a>
+                                                    class="btn btn-primary btn-sm">Produkta info</a>
                                             </div>
                                         </div>
                                         <% } %>
@@ -79,16 +88,24 @@
                                             <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
                                         </div>
                                         <div class="card-body">
-                                            <h5 class="card-title">
+                                            <p class="card-title">
                                                 <%= j.brand %>
-                                                    <%= j.model %>
-                                            </h5>
+                                                    <strong>
+                                                        <%= j.model %>
+                                                    </strong>
+                                            </p>
                                             <p class="card-text">
-                                                <%= j.description %>
-
+                                                Cena <span class="newPriceShow">
+                                                    <%= j.price.new %> &euro;
+                                                </span>
+                                                <% if(j.price.old) {%>
+                                                    <span class="oldPriceShow">
+                                                        <%= j.price.old %> &euro;
+                                                    </span>
+                                                    <% } %>
                                             </p>
                                             <a href="/products/<%= j._id %>"
-                                                class="btn btn-primary">Info</a>
+                                                class="btn btn-primary btn-sm">Produkta info</a>
                                         </div>
                                     </div>
                                     <% } %>

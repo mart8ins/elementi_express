@@ -25,7 +25,7 @@ router.post("/products", catchAsync(async (req, res, next) => {
             brand: Joi.string().min(3).alphanum().required(),
             model: Joi.string().min(2).alphanum().required(),
             newPrice: Joi.number().min(0).required(),
-            oldPrice: Joi.number().min(0),
+            oldPrice: Joi.string().allow(""),
             category: Joi.string().min(4),
             onSale: Joi.boolean(),
             description: Joi.string()
