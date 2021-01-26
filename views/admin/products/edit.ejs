@@ -28,7 +28,7 @@
                             placeholder="<%= product.price.new %>" required>
                     </div>
                     <div class="mb-3">
-                        <label for="oldPrice" class="form-label">Old price</label>
+                        <label for="oldPrice" class="form-label">Old price (optional)</label>
                         <input name="editProduct[oldPrice]" type="number" class="form-control" id="oldPrice"
                             placeholder="<%= product.price.old %>">
                     </div>
@@ -71,8 +71,8 @@
                 <!-- to add description -->
                 <div class="textarea_container">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" name="editProduct[description]" id="description" cols="43"
-                        rows="4"
+                    <textarea class="form-control" name="editProduct[description]" id="description" cols="33"
+                        rows="8"
                         required><%= product.description %></textarea>
                 </div>
 

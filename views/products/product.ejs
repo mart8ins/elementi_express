@@ -4,7 +4,7 @@
         <div class="row top-row">
             <div class="col-6">
                 <div class="product_image_container">
-                    <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
+                    <img src="/images/<%= product.model %>.jpg" class="card-img-top" alt="<%= product.model %>">
                 </div>
 
             </div>
@@ -26,9 +26,11 @@
                     <p class="new">
                         <%= product.price.new %> &euro;
                     </p>
-                    <p class="old">
-                        <%= product.price.old %> &euro;
-                    </p>
+                    <% if(product.price.old) {%>
+                        <p class="old">
+                            <%= product.price.old %> &euro;
+                        </p>
+                        <% } %>
                 </div>
             </div>
         </div>

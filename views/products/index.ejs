@@ -44,7 +44,8 @@
                                     <% if(s.onSale && s.onSale==true) {%>
                                         <div class="card" style="width: 15rem; max-height: 450px;">
                                             <div class="product_image_container">
-                                                <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
+                                                <img src="/images/<%= s.model %>.jpg" class="card-img-top"
+                                                    alt="<%= s.model %>">
                                             </div>
                                             <div class="card-body">
                                                 <p class="card-title">
@@ -85,7 +86,8 @@
                                     <!-- produkta kartiņa-->
                                     <div class="card" style="width: 15rem; max-height: 450px;">
                                         <div class="product_image_container">
-                                            <img src="/images/fridge.jpg" class="card-img-top" alt="oven">
+                                            <img src="/images/<%= j.model %>.jpg" class="card-img-top"
+                                                alt="<%= j.model %>">
                                         </div>
                                         <div class="card-body">
                                             <p class="card-title">
