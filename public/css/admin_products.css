@@ -108,3 +108,15 @@ color: black;
     text-align: right;
 }
 
+/* PRODUCTS EDIT PAGE */
+.edit_product {
+    border: 1px solid grey;
+    padding: 20px 150px;
+}
+.edit_price, .edit_model, .edit_category {
+    display: flex;
+    justify-content: space-evenly;
+}
+.edit_product_button {
+    text-align: center;
+}

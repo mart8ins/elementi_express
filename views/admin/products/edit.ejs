@@ -1,12 +1,12 @@
 <% layout("/layout/boilerplate.ejs") %>
 
     <div class="container">
-        <div class="add_new_product">
+        <div class="edit_product">
             <form action="/manage/products?id=<%= product._id %>&_method=PATCH" method="post" class="needs-validation"
                 novalidate>
 
                 <!-- to add model and brand -->
-                <div class="model_container form-group">
+                <div class="form-group edit_model">
                     <div class="mb-3">
                         <label for="brand" class="form-label">Brand</label>
                         <input name="editProduct[brand]" type="text" class="form-control" id="brand"
@@ -21,7 +21,7 @@
                 </div>
 
                 <!-- to add prices-->
-                <div class="price_container">
+                <div class="edit_price">
                     <div class="mb-3">
                         <label for="newPrice" class="form-label">New price</label>
                         <input name="editProduct[newPrice]" type="number" class="form-control" id="newPrice"
@@ -35,7 +35,7 @@
                 </div>
 
                 <!-- to add category -->
-                <div class="category_onSale_container">
+                <div class="edit_category">
                     <div class="mb-3">
                         <select name="editProduct[category]" class="form-select form-control"
                             aria-label="Default select example" required>
@@ -69,14 +69,14 @@
                 </div>
 
                 <!-- to add description -->
-                <div class="textarea_container">
+                <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" name="editProduct[description]" id="description" cols="33"
                         rows="8"
                         required><%= product.description %></textarea>
                 </div>
 
-                <div class="button_container">
+                <div class="edit_product_button">
                     <button type="submit" class="btn btn-secondary d-inline-block">Edit product</button>
                 </div>
             </form>
