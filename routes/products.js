@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Product = require("../models/product");
-const catchAsync = require("../utils/catchAsync");
+const catchAsync = require("../utils/ErrorHandling/catchAsync");
 
 // product details view
 router.get("/:id", catchAsync(async (req, res) => {

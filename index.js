@@ -42,7 +42,7 @@ db.once("open", () => {
 /******************
 ERROR HANDLING SETUP
 ********************/
-const AppError = require("./utils/AppError");
+const AppError = require("./utils/ErrorHandling/AppError");
 
 
 /* *********
