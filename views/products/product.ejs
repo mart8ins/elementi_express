@@ -37,11 +37,11 @@
         <div class="row bottom-row">
             <div class="col-12 offset-3">
                 <div class="add_to_cart">
-                    <form action="" method="post">
+                    <form action="/products/<%= product._id %>" method="post">
                         <div class="pluss_minuss">
                             <!-- <span><i class="fas fa-minus-circle"></i></span> -->
                             <label for="quantity">Quantity</label>
-                            <input name="newOrder[quantity]" id="quantity" class="form-control" type="text"
+                            <input name="product[quantity]" id="quantity" class="form-control" type="text"
                                 placeholder="0">
                             <!-- <span><i class="fa fa-plus-circle"></i></span></i> -->
                         </div>

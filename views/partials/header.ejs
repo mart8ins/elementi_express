@@ -2,28 +2,50 @@
     <p class="h5 my-0 me-md-auto fw-normal" id="brand"><a href="/">Elementi</a></p>
     <nav class="my-2 my-md-0 me-md-3">
 
-        <!-- shopping cartu redz jebkurš, kopā ar login/register pogām-->
-        <a class="p-2 text-dark" href="#">Shopping cart</a>
-
-        <!-- pēc usera ielogošanās users papildus shopping cartam redz arī orders history un savu vārdu
-        -->
-        <a class="p-2 text-dark isLogged" href="#">Order history</a>
-        <a class="isLogged"><strong>Aiga Liere</strong></a>
+        <!-- shopping cart for every user but not Admin-->
+        <% if(!isAdmin) {%>
+            <a href="/shopping/cart" class="p-2 btn btn-outline-secondary btn-sm">Shopping cart</a>
+            <% } %>
 
 
-        <!--
-            Ja ielogojas admins tad redz tikai admina vārdu un Manage linkus
-        -->
-        <a class="isAdmin"><strong>Martins Skinkis <span>- Admin</span></strong></a>
-        <a class="p-2 btn btn-outline-secondary btn-sm isAdmin" href="/manage/orders">Manage orders</a>
-        <a class="p-2 btn btn-outline-secondary btn-sm isAdmin" href="/manage/products">Manage products</a>
+                <!-- if user logged and is not admin -->
+                <% if(userLoggedIn && !isAdmin) { %>
+                    <a href="/user/<%= userLoggedIn %>/orders"
+                        class="p-2 btn btn-outline-secondary btn-sm isUserOptions">Order
+                        history</a>
+                    <a href="/user/<%= userLoggedIn %>/profile" class="isUserName"><strong>
+                            <%= userLoggedInName %>
+                        </strong></a>
+                    <% } %>
+
+
+                        <!-- If user is ADMIN -->
+                        <% if(isAdmin) {%>
+                            <a class="isAdmin"><strong>
+                                    <span>Admin</span>
+                                    <%= userLoggedInName %>
+                                </strong></a>
+                            <a class="p-2 btn btn-outline-secondary btn-sm" href="/manage/orders">Manage
+                                orders</a>
+                            <a class="p-2 btn btn-outline-secondary btn-sm" href="/manage/products">Manage
+                                products</a>
+                            <% } %>
 
     </nav>
-    <div class="isNotLogged">
-        <a class="btn btn-outline-primary btn-sm" href="/auth/login">Login</a>
-        <a class="btn btn-outline-primary btn-sm" href="/auth/register">Register</a>
-    </div>
-    <div class="isLogged">
-        <a class="btn btn-outline-primary btn-sm">Logout</a>
-    </div>
+
+
+    <!-- login logout register buttons-->
+    <% if(!userLoggedIn) {%>
+        <div class="isNotLogged">
+            <a class="btn btn-outline-primary btn-sm" href="/auth/login">Login</a>
+            <a class="btn btn-outline-primary btn-sm" href="/auth/register">Register</a>
+        </div>
+        <% } %>
+            <% if(userLoggedIn) { %>
+                <div class="isLogged">
+                    <form action="/auth/logout" method="post">
+                        <button class="btn btn-outline-primary btn-sm">Logout</button>
+                    </form>
+                </div>
+                <% } %>
 </header>

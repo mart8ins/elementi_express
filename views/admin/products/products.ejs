@@ -10,6 +10,9 @@
                 <div class="add_new_product">
                     <form action="/manage/products" method="post" class="needs-validation" novalidate>
                         <!-- to add model and brand -->
+                        <p class="created_succes_msg">
+                            <%= messageProduct %>
+                        </p>
                         <div class="model_container form-group">
                             <div class="mb-3">
                                 <label for="brand" class="form-label">Brand</label>
@@ -80,7 +83,14 @@
             ************************************** -->
                 <div class="add_new_category">
                     <form action="/manage/products" method="post" class="needs-validation" novalidate>
-                        <label class="form-label" for="newCategory">New category</label>
+                        <label class="form-label new_category_label" for="newCategory">New category</label>
+
+
+                        <p class="created_succes_msg">
+                            <%= messageCategory %>
+                        </p>
+
+
                         <div class="create_category_container">
                             <input name="newCategory" type="text" class="form-control" name="newCategory"
                                 id="newCategory" required>
@@ -109,7 +119,8 @@
                                     <!-- <input type="button" class="btn btn-danger btn-sm" value="Delete"
                                         name="deleteCategory[<%= i._id %>]"> -->
                                     <button class="btn btn-danger btn-sm"
-                                        name="categoryID" value="<%= i._id %>">Delete</button>
+                                        name="categoryID" value="<%= i._id %>"
+                                        title="!Tiks izdzēsta visa kategorija, ieskaitot produktus kategorijā!">Delete</button>
                                 </form>
                             </div>
                             <% } %>

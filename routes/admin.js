@@ -1,5 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const { adminRouteGuard } = require("../utils/Middleware/routeGuarding");
+
+
+/*****************
+    ROUTE GUARD FOR ADMIN
+*******************/
+router.use(adminRouteGuard);
 
 /*****************
     error handling
@@ -19,6 +26,14 @@ const Category = require("../models/category");
 const productValidation = require("../utils/ValidationHandling/productValidation");
 const categoryValidation = require("../utils/ValidationHandling/categoryValidation");
 
+/*****************
+    middleware for category, product creation succes message
+*******************/
+router.use((req, res, next) => {
+    res.locals.messageCategory = req.flash("category-succes"); // locals var nostorot key un value, kas automātiski ar responsu nodos key vērtību, ja tā templatā tiks saukta 
+    res.locals.messageProduct = req.flash("product-succes");
+    next();
+})
 
 /*****************
     admin routes
@@ -37,7 +52,9 @@ router.post("/products", productValidation, categoryValidation, catchAsync(async
         const createdCategory = await new Category({
             category: newCategory
         })
+        req.flash("category-succes", `Successfuly created new category - ${newCategory}!`)
         await createdCategory.save();
+
     }
     // if a new product is created
     if (newProduct) {
@@ -54,6 +71,7 @@ router.post("/products", productValidation, categoryValidation, catchAsync(async
             category: cat // reference to category
         })
         cat.products.unshift(createdProduct); // pushing in current category products array a reference to created product
+        req.flash("product-succes", `Successfuly created new product - ${newProduct.brand} ${newProduct.model}!`)
         await cat.save();
         await createdProduct.save();
     }

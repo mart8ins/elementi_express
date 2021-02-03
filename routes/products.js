@@ -11,6 +11,13 @@ router.get("/:id", catchAsync(async (req, res) => {
     res.render("products/product", { product });
 }))
 
+router.post("/:id", catchAsync(async (req, res) => {
+    const { id } = req.params; // product id
+    const { quantity } = req.body.product; // quantity added to cart
+
+    res.redirect(`/products/${id}`);
+}))
+
 
 
 module.exports = router;
