@@ -1,3 +1,72 @@
 <% layout("/layout/boilerplate.ejs") %>
 
-    Shopping cart
+    <div class="container">
+        <% if(showCart) {%>
+            <table class="table table-hover">
+
+                <% if(totals.quantity==0) {%>
+                    <%- include("./emptyCart") %>
+                        <% } else {%>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Produkts</th>
+                                    <th scope="col">Skaits</th>
+                                    <th scope="col">Cena</th>
+                                    <th scope="col">Summa</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <% for(let p of showCart) {%>
+                                    <tr>
+                                        <th scope="row">
+                                            <img class="cart_image" src="/images/<%= p.product.model %>.jpg"
+                                                alt="Image of model <%= p.product.model %>">
+                                        </th>
+                                        <td>
+                                            <%= p.product.brand %>
+                                                <%= p.product.model %>
+                                        </td>
+                                        <td>
+                                            <%= p.product.quantity %>
+                                        </td>
+                                        <td>
+                                            <%= p.product.price %> &euro;
+                                        </td>
+                                        <td>
+                                            <%= p.product.total %> &euro;
+                                        </td>
+                                        <td>
+                                            <form action="/shopping/cart?product=<%= p.id %>" method="post">
+                                                <button class="btn btn-danger btn-sm">Noņemt</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Vienību skaits</th>
+                                    <th scope="col">
+                                        <%= totals.quantity %>
+                                    </th>
+                                    <th scope="col">Groza summa</th>
+                                    <th scope="col">
+                                        <%= totals.price %> &euro;
+                                    </th>
+                                </tr>
+                            </tfoot>
+                            <% } %>
+
+            </table>
+            <% if(!totals.quantity==0) {%>
+                <a href="/shopping/checkout"><button class="btn btn-primary submit_btn">Noformēt
+                        pasūtījumu</button></a>
+                <% } %>
+                    <% } %>
+
+
+    </div>

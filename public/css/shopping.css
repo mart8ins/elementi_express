@@ -1,0 +1,23 @@
+table {
+    text-align: center;
+    }
+    td {
+    font-size: 21px;
+    }
+
+.cart_image {
+    width: 50px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.submit_btn {
+    float: right;
+    margin-top: 50px;
+}
+
+.empty_cart {
+    font-size: 28px;
+    padding: 250px;
+    text-align: center;
+}

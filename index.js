@@ -8,6 +8,26 @@ const session = require("express-session");
 const flash = require("connect-flash");
 
 /* *********
+MONGO datu bāze
+************* */
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost:27017/elementi", {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+})
+const db = mongoose.connection;
+db.on("error", console.error.bind("error occured: "));
+db.once("open", () => {
+    console.log("Connection to database successful!");
+});
+
+/* *********
+MONGO STORE
+************* */
+const MongoStore = require("connect-mongo")(session);
+
+/* *********
 express setup
 ************* */
 const ejsMate = require("ejs-mate"); // template funkcijas
@@ -35,30 +55,19 @@ app.use(cookieParser());
 /* *********
 express session
 ************* */
-const sessionOptions = { secret: "badsecret", resave: false, saveUninitialized: false }
+const sessionOptions = {
+    secret: "badsecret",
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 180 * 60 * 1000 }
+}
 app.use(session(sessionOptions));
 
 /* *********
 flash messages
 ************* */
 app.use(flash());
-
-
-
-/* *********
-MONGO datu bāze
-************* */
-const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/elementi", {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-})
-const db = mongoose.connection;
-db.on("error", console.error.bind("error occured: "));
-db.once("open", () => {
-    console.log("Connection to database successful!");
-});
 
 /******************
 ERROR HANDLING SETUP
@@ -71,9 +80,12 @@ locals
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.product_to_cart = req.flash("product_to_cart");
     res.locals.userLoggedIn = req.session.user_id;
     res.locals.userLoggedInName = req.session.user_name;
     res.locals.isAdmin = req.session.isAdmin;
+    req.session.cart ? res.locals.cart_total = req.session.cart.cartTotals.quantity : res.locals.cart_total = null;
+
     next();
 })
 

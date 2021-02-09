@@ -28,3 +28,9 @@ nav a {
     font-size: 22px;
     border-bottom: 3px solid grey;
 }
+
+.cart_total_q {
+    color: red;
+    font-size: 12px;
+    border: yellow;
+}
