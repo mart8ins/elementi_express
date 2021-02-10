@@ -1,3 +1,65 @@
 <% layout("/layout/boilerplate.ejs") %>
 
-    order finaleee
+    <div class="container">
+        <main>
+            <div class="py-5 text-center">
+                <h2>Piegādes informācija</h2>
+                <p class="lead">Pēdējais solis pasūtījuma noformēšanai. Ievadiet piegādes informācīju. Pēc pasūtījuma
+                    nosūtīšanas ar Jums sazināsies.</p>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-4 offset-4">
+                    <form action="/shopping/checkout?orderSuccess" method="post" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label">Vārds</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder=""
+                                    value="" required>
+                                <div class="invalid-feedback">
+                                    Lūdzu ievadiet kontaktpersonas vārdu.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">Uzvārds</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder=""
+                                    value="" required>
+                                <div class="invalid-feedback">
+                                    Lūdzu ievadiet kontaktpersonas uzvārdu.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="phone" class="form-label">Telefona nummurs</label>
+                                <input type="text" class="form-control" id="phone" name="phone"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Lūgums ievadīt derīgu telefona nummuru saziņai par pasūtījumu.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="email" class="form-label">E-pasts</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Lūgums ievadīt derīgu e-pasta adresi priekš rēķina nosūtīšanas.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Piegādes adrese</label>
+                                <input type="text" class="form-control" id="address" name="address"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Lūgums ievadīt piegādes adresi.
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-5">
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">Nosūtīt pasūtījumu</button>
+                    </form>
+                </div>
+            </div>
+        </main>

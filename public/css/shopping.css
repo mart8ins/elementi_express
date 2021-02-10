@@ -16,7 +16,7 @@ table {
     margin-top: 50px;
 }
 
-.empty_cart {
+.empty_cart, .order_success {
     font-size: 28px;
     padding: 250px;
     text-align: center;
