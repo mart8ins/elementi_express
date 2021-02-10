@@ -58,7 +58,6 @@ router.post("/checkout", catchAsync(async (req, res) => {
         isRegisterUser = await User.findById(req.session.user_id);
     }
 
-
     // NEW ORDER NUMBER CREATION
     const oldOrderNumber = await Order_Number.findById(orderNumberControlId);
     let newOrderNumber = OrderNumberGenerator(oldOrderNumber.orderNumber);
