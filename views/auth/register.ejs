@@ -1,10 +1,11 @@
 <%- layout("layout/boilerplate") %>
 
-    <div class="container">
 
+
+    <div class="container">
         <div style="width: 30%; margin: 120px auto;">
 
-            <form action="/auth/register" method="post" class="validated-form" novalidate>
+            <form action="/auth/register" method="post" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label class="form-label" for="username">Username</label>
                     <input class="form-control" type="text" id="username" name="username" required>
@@ -29,4 +30,9 @@
                 <button class="btn btn-secondary">Register</button>
             </form>
         </div>
+        <% if(error.length) {%>
+            <div class="registration_error">
+                <%= error %>
+            </div>
+            <% } %>
     </div>

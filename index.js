@@ -111,6 +111,19 @@ app.use("/user", userRoutes);
 app.use("/shopping", shoppingRoutes);
 
 
+
+/* *********
+ IF PAGE NOT FOUND PAGE 
+************* */
+app.use((req, res) => {
+    throw new AppError("Page no found", 404);
+})
+
+app.use((err, req, res, next) => {
+    console.log(err, "****************** errrrr ************************")
+    next(err);
+})
+
 /* *********
 ERROR MIDLLEWARE 
 ************* */
@@ -118,16 +131,6 @@ app.use((err, req, res, next) => {
     console.log(err)
     const { message = "Something went wrong!", status = 500 } = err;
     res.render("error", { message, status })
-    next(err);
-})
-
-
-
-/* *********
- IF PAGE NOT FOUND PAGE 
-************* */
-app.use((req, res) => {
-    throw new AppError("Page no found", 404)
 })
 
 

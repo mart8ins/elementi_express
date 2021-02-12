@@ -1,3 +1,4 @@
+/* template for errors */
 .error_container {
     border: 5px solid black;
     padding: 20px;
@@ -11,4 +12,16 @@
     background-color: black;
     padding: 10px;
     border-radius: 10px;
+}
+
+/*  registration error above the fields in regsiter route  */
+.registration_error {
+    width: 40%;
+    padding: 10px;
+    margin: 20px auto;
+    color: rgba(228, 22, 22, 0.774);
+    background-color: rgba(247, 242, 242, 0.658);
+    border-radius: 15px;
+    font-weight: bold;
+    text-align: center;
 }
