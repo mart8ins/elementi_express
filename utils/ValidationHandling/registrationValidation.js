@@ -2,7 +2,8 @@ const Joi = require("Joi");
 const User = require("../../models/user");
 
 module.exports = async function registrationValidation(req, res, next) {
-    const { username, email } = req.body;
+    const username = req.body.username.toLowerCase();
+    const email = req.body.email.toLowerCase();
     const ifUserNameExists = await User.findOne({ username });
     const ifUserEmailExists = await User.findOne({ email });
 

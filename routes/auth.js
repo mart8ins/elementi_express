@@ -15,7 +15,8 @@ router.get("/login", (req, res) => {
 })
 
 router.post("/login", catchAsync(async (req, res) => {
-    const { username, password } = req.body;
+    const { password } = req.body;
+    const username = req.body.username.toLowerCase();
     const checkedUser = await User.validateUser(username, password);
     if (checkedUser) {
         req.session.user_id = checkedUser._id;
@@ -34,12 +35,14 @@ router.post("/login", catchAsync(async (req, res) => {
  REGISTER PAGE
 *************/
 router.get("/register", (req, res) => {
-    res.locals.invalidRegistration = "";
     res.render("auth/register");
 })
 
 router.post("/register", registrationValidation, catchAsync(async (req, res) => {
-    const { username, password, email } = req.body;
+    const { password } = req.body;
+    const username = req.body.username.toLowerCase();
+    const email = req.body.email.toLowerCase();
+
     if (username && password && email) {
         const hash = await bcrypt.hash(password, 12);
         const newUser = await new User({
