@@ -25,23 +25,32 @@ router.get("/:userProfileId/profile", catchAsync(async (req, res) => {
 
 
 
-
-
-
-
-
-
 router.get("/:userProfileId/profile/edit", catchAsync(async (req, res) => {
     const { userProfileId } = req.params;
+    const { username_error } = req.query;
+    const { email_error } = req.query;
     const loggedUser = await User.findById(userProfileId);
-    res.render("user/edit", { loggedUser });
-}))
 
+    res.render("user/edit", { loggedUser, username_error, email_error });
+}))
 
 
 router.post("/:userProfileId/profile", catchAsync(async (req, res) => {
     const { userProfileId } = req.params;
     const { username, firstName, lastName, email, address, phone } = req.body;
+
+    //if user changes its username or email to what already exists for diferent user then
+    // error info is sent through query
+    const takenUsername = await User.findOne({ username: username });
+    const takenEmail = await User.findOne({ email: email });
+    if (takenUsername && takenUsername._id != userProfileId) {
+        res.redirect(`/user/${userProfileId}/profile/edit?username_error=true`);
+    }
+    if (takenEmail && takenEmail._id != userProfileId) {
+        res.redirect(`/user/${userProfileId}/profile/edit?email_error=true`);
+    }
+
+
     const delivery = {
         firstName,
         lastName,
@@ -49,11 +58,12 @@ router.post("/:userProfileId/profile", catchAsync(async (req, res) => {
         address
     }
     const loggedUser = await User.findById(userProfileId);
-    loggedUser.username = username;
-    req.session.user_name = username;
-    loggedUser.email = email;
-    loggedUser.delivery = delivery;
 
+    loggedUser.username = username;
+    loggedUser.email = email;
+    req.session.user_name = username;
+
+    loggedUser.delivery = delivery;
     await loggedUser.save();
 
     res.redirect(`/user/${userProfileId}/profile`);

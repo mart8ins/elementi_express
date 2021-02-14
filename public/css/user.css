@@ -2,3 +2,8 @@
 .user_profile_edit_profile_img {
 text-align: center;
 }
+
+.taken_username_email_error {
+    color: red;
+    text-align: center;
+}
