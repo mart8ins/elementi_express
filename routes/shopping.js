@@ -61,6 +61,8 @@ router.post("/checkout", catchAsync(async (req, res) => {
     // NEW ORDER NUMBER CREATION
     const oldOrderNumber = await Order_Number.findById(orderNumberControlId);
     let newOrderNumber = OrderNumberGenerator(oldOrderNumber.orderNumber);
+    // for after checkout to use in locals and show in order success template
+    req.session.orderNo = newOrderNumber;
 
 
     // SAVES ORDER IN DB

@@ -4,16 +4,16 @@ display: flex;
 flex-wrap: wrap;
 justify-content: flex-start;
 }
-.card {
+.product_card {
     margin: 5px;
     background-color: rgb(240, 230, 230);
 }
-.card:hover {
+.product_card:hover {
     transform: scale(1.03);
     background-color: rgb(197, 166, 166);
 }
 
-.card-title {
+.product_card_title {
     background-color: white;
     padding: 5px;
     border-radius: 5px;

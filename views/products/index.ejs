@@ -42,13 +42,13 @@
                             <% for(let o of categories) {%>
                                 <% for(let s of o.products) {%>
                                     <% if(s.onSale && s.onSale==true) {%>
-                                        <div class="card" style="width: 15rem; max-height: 450px;">
+                                        <div class="card product_card" style="width: 15rem; max-height: 450px;">
                                             <div class="product_image_container">
                                                 <img src="/images/<%= s.model %>.jpg" class="card-img-top"
                                                     alt="<%= s.model %>">
                                             </div>
                                             <div class="card-body">
-                                                <p class="card-title">
+                                                <p class="card-title product_card_title">
                                                     <%= s.brand %>
                                                         <strong>
                                                             <%= s.model %>

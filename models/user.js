@@ -18,7 +18,21 @@ const userSchema = new Schema({
         required: [true, "Password is required!"],
         minLength: [6, "Password must be at least 6 characters long"]
     },
-    admin: false
+    admin: false,
+    delivery: {
+        firstName: {
+            type: String
+        },
+        lastName: {
+            type: String
+        },
+        phone: {
+            type: String
+        },
+        address: {
+            type: String
+        }
+    }
 })
 
 // VALIDATES USER WHO WANTS TO LOGIN

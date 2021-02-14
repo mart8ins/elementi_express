@@ -84,18 +84,19 @@ app.use((req, res, next) => {
     res.locals.userLoggedIn = req.session.user_id;
     res.locals.userLoggedInName = req.session.user_name;
     res.locals.isAdmin = req.session.isAdmin;
+    res.locals.orderNo = req.session.orderNo;
     req.session.cart ? res.locals.cart_total = req.session.cart.cartTotals.quantity : res.locals.cart_total = null;
-
     next();
 })
+
 
 /* *********
 ROUTES IMPORTS 
 ************* */
+const homeRoutes = require("./routes/home");
 const adminRoutes = require("./routes/admin");
 const authRoutes = require("./routes/auth");
 const productsRoutes = require("./routes/products");
-const homeRoutes = require("./routes/home");
 const userRoutes = require("./routes/user");
 const shoppingRoutes = require("./routes/shopping");
 
@@ -119,16 +120,11 @@ app.use((req, res) => {
     throw new AppError("Page no found", 404);
 })
 
-app.use((err, req, res, next) => {
-    console.log(err, "****************** errrrr ************************")
-    next(err);
-})
 
 /* *********
 ERROR MIDLLEWARE 
 ************* */
 app.use((err, req, res, next) => {
-    console.log(err)
     const { message = "Something went wrong!", status = 500 } = err;
     res.render("error", { message, status })
 })
