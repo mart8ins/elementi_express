@@ -40,15 +40,15 @@ router.get("/register", (req, res) => {
 
 router.post("/register", registrationValidation, catchAsync(async (req, res) => {
     const { password } = req.body;
-    const username = req.body.username.toLowerCase();
-    const email = req.body.email.toLowerCase();
+    const username = req.body.username;
+    const email = req.body.email;
 
     if (username && password && email) {
         const hash = await bcrypt.hash(password, 12);
         const newUser = await new User({
-            username,
+            username: username.toLowerCase(),
             password: hash,
-            email
+            email: email.toLowerCase()
             // ,
             // admin: true
             // if want add a user as admin unhide admin: true and register user

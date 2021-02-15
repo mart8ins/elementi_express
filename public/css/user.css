@@ -7,3 +7,13 @@ text-align: center;
     color: red;
     text-align: center;
 }
+
+/* USER ORDER HISTORY*/
+.order_number {
+    font-size: 25px;
+    padding: 20px;
+}
+
+.order_history_delivery {
+    display: flex;
+}

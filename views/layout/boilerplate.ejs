@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/css/user.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
         integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-    <script src="/js/jquery.min.js"></script>
+    <!-- <script src="/js/jquery.min.js"></script> -->
     <script src="/js/bootstrap.min.js"></script>
 </head>
 
@@ -24,7 +24,7 @@
         <%- body %>
             <%- include("../partials/footer") %>
 
-                <script>
+                <!-- <script>
                     // Example starter JavaScript for disabling form submissions if there are invalid fields
                     (function () {
                         'use strict';
@@ -43,7 +43,13 @@
                             });
                         }, false);
                     })();
-                </script>
+                </script> -->
+                <!-- <script>
+                    var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
+                    var collapseList = collapseElementList.map(function (collapseEl) {
+                        return new bootstrap.Collapse(collapseEl)
+                    })
+                </script> -->
 </body>
 
 </html>

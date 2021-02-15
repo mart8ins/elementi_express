@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { loggedUserRouteGuard } = require("../utils/Middleware/routeGuarding");
 const User = require("../models/user");
+const Order = require("../models/order");
 
 
 
@@ -23,8 +24,6 @@ router.get("/:userProfileId/profile", catchAsync(async (req, res) => {
     res.render("user/profile", { loggedUser });
 }))
 
-
-
 router.get("/:userProfileId/profile/edit", catchAsync(async (req, res) => {
     const { userProfileId } = req.params;
     const { username_error } = req.query;
@@ -33,7 +32,6 @@ router.get("/:userProfileId/profile/edit", catchAsync(async (req, res) => {
 
     res.render("user/edit", { loggedUser, username_error, email_error });
 }))
-
 
 router.post("/:userProfileId/profile", catchAsync(async (req, res) => {
     const { userProfileId } = req.params;
@@ -49,8 +47,6 @@ router.post("/:userProfileId/profile", catchAsync(async (req, res) => {
     if (takenEmail && takenEmail._id != userProfileId) {
         res.redirect(`/user/${userProfileId}/profile/edit?email_error=true`);
     }
-
-
     const delivery = {
         firstName,
         lastName,
@@ -70,16 +66,31 @@ router.post("/:userProfileId/profile", catchAsync(async (req, res) => {
 }))
 
 
-
-
-
-
-
-
-
 /* USERS ORDER HISTORY */
 router.get("/:id/orders", catchAsync(async (req, res) => {
-    res.render("user/orders");
+    const { id } = req.params;
+    let allOrders = await Order.find({}).populate("user");
+
+    // all users orders
+    let userOrders = [];
+    for (let order in allOrders) {
+        if (allOrders[order].user) {
+            if (allOrders[order].user._id == id) {
+                let ord = {
+                    products: [],
+                    totalQ: allOrders[order].order.cartTotals.quantity,
+                    totalSum: allOrders[order].order.cartTotals.price,
+                    delivery: allOrders[order].shipping,
+                    orderNumber: allOrders[order].orderNumber
+                }
+                for (let pr in allOrders[order].order.products) {
+                    ord.products.push(allOrders[order].order.products[pr])
+                }
+                userOrders.unshift(ord)
+            }
+        }
+    }
+    res.render("user/orders", { userOrders });
 }))
 
 module.exports = router;
