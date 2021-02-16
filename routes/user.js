@@ -78,6 +78,8 @@ router.get("/:id/orders", catchAsync(async (req, res) => {
             if (allOrders[order].user._id == id) {
                 let ord = {
                     products: [],
+                    date: allOrders[order].date,
+                    status: allOrders[order].status,
                     totalQ: allOrders[order].order.cartTotals.quantity,
                     totalSum: allOrders[order].order.cartTotals.price,
                     delivery: allOrders[order].shipping,
@@ -90,6 +92,7 @@ router.get("/:id/orders", catchAsync(async (req, res) => {
             }
         }
     }
+    console.log(userOrders)
     res.render("user/orders", { userOrders });
 }))
 

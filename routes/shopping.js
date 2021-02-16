@@ -75,9 +75,12 @@ router.post("/checkout", catchAsync(async (req, res) => {
             email,
             address
         },
+        status: [{ status: "Pending", changeDate: new Date() }],
+        date: new Date(),
         order: cart,
         orderNumber: newOrderNumber
     })
+    // { status: "Processing", changeDate: new Date() }, { status: "Awaiting payment", changeDate: new Date() },{ status: "Shipped", changeDate: new Date() }, { status: "Completed", changeDate: new Date() }, { status: "Canceled", changeDate: new Date() }
 
     // SAVES REFERANCE FOR LATEST ORDER NUMBER IN ORDER NUMBER TRACKER
     oldOrderNumber.orderNumber = newOrderNumber;
