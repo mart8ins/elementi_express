@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { loggedUserRouteGuard } = require("../utils/Middleware/routeGuarding");
+const { loggedUserRouteGuard, loggedUserManageGuard } = require("../utils/Middleware/routeGuarding");
 const User = require("../models/user");
 const Order = require("../models/order");
 
@@ -18,34 +18,34 @@ const AppError = require("../utils/ErrorHandling/AppError");
 const catchAsync = require("../utils/ErrorHandling/catchAsync");
 
 /* PROFILE INFO AND SETUP */
-router.get("/:userProfileId/profile", catchAsync(async (req, res) => {
-    const { userProfileId } = req.params;
-    const loggedUser = await User.findById(userProfileId);
+router.get("/:id/profile", loggedUserManageGuard, catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const loggedUser = await User.findById(id);
     res.render("user/profile", { loggedUser });
 }))
 
-router.get("/:userProfileId/profile/edit", catchAsync(async (req, res) => {
-    const { userProfileId } = req.params;
+router.get("/:id/profile/edit", loggedUserManageGuard, catchAsync(async (req, res) => {
+    const { id } = req.params;
     const { username_error } = req.query;
     const { email_error } = req.query;
-    const loggedUser = await User.findById(userProfileId);
+    const loggedUser = await User.findById(id);
 
     res.render("user/edit", { loggedUser, username_error, email_error });
 }))
 
-router.post("/:userProfileId/profile", catchAsync(async (req, res) => {
-    const { userProfileId } = req.params;
+router.post("/:id/profile", loggedUserManageGuard, catchAsync(async (req, res) => {
+    const { id } = req.params;
     const { username, firstName, lastName, email, address, phone } = req.body;
 
     //if user changes its username or email to what already exists for diferent user then
     // error info is sent through query
     const takenUsername = await User.findOne({ username: username });
     const takenEmail = await User.findOne({ email: email });
-    if (takenUsername && takenUsername._id != userProfileId) {
-        res.redirect(`/user/${userProfileId}/profile/edit?username_error=true`);
+    if (takenUsername && takenUsername._id != id) {
+        res.redirect(`/user/${id}/profile/edit?username_error=true`);
     }
-    if (takenEmail && takenEmail._id != userProfileId) {
-        res.redirect(`/user/${userProfileId}/profile/edit?email_error=true`);
+    if (takenEmail && takenEmail._id != id) {
+        res.redirect(`/user/${id}/profile/edit?email_error=true`);
     }
     const delivery = {
         firstName,
@@ -53,7 +53,7 @@ router.post("/:userProfileId/profile", catchAsync(async (req, res) => {
         phone,
         address
     }
-    const loggedUser = await User.findById(userProfileId);
+    const loggedUser = await User.findById(id);
 
     loggedUser.username = username;
     loggedUser.email = email;
@@ -62,12 +62,12 @@ router.post("/:userProfileId/profile", catchAsync(async (req, res) => {
     loggedUser.delivery = delivery;
     await loggedUser.save();
 
-    res.redirect(`/user/${userProfileId}/profile`);
+    res.redirect(`/user/${id}/profile`);
 }))
 
 
 /* USERS ORDER HISTORY */
-router.get("/:id/orders", catchAsync(async (req, res) => {
+router.get("/:id/orders", loggedUserManageGuard, catchAsync(async (req, res) => {
     const { id } = req.params;
     let allOrders = await Order.find({}).populate("user");
 
