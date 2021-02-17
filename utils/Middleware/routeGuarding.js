@@ -11,3 +11,17 @@ module.exports.loggedUserRouteGuard = function (req, res, next) {
     }
     next();
 }
+
+module.exports.checkoutRouteGuard = function (req, res, next) {
+    if (!req.session.cart) {
+        res.redirect("/");
+    }
+    next();
+}
+
+module.exports.orderSuccessRouteGuard = function (req, res, next) {
+    if (!req.session.orderNo) {
+        res.redirect("/");
+    }
+    next();
+}

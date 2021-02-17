@@ -6,6 +6,7 @@ const User = require("../models/user");
 const Order_Number = require("../models/order_number");
 const orderNumberControlId = "60243bf048e05e080ce78ef2";// id for storing/controling order number
 const OrderNumberGenerator = require("../utils/orderNumberGenerator");
+const { checkoutRouteGuard, orderSuccessRouteGuard } = require("../utils/Middleware/routeGuarding");
 
 
 /*****************
@@ -38,15 +39,11 @@ router.post("/cart", catchAsync(async (req, res) => {
     res.redirect("/shopping/cart");
 }))
 
-router.get("/checkout", catchAsync(async (req, res) => {
+router.get("/checkout", checkoutRouteGuard, catchAsync(async (req, res) => {
     res.render("shopping/checkout");
 }))
 
-router.get("/orderSuccess", catchAsync(async (req, res) => {
-    res.render("shopping/orderSuccess");
-}))
-
-router.post("/checkout", catchAsync(async (req, res) => {
+router.post("/checkout", checkoutRouteGuard, catchAsync(async (req, res) => {
     // shipping info
     const { firstName, lastName, phone, email, address } = req.body;
     // shopping cart
@@ -80,17 +77,22 @@ router.post("/checkout", catchAsync(async (req, res) => {
         order: cart,
         orderNumber: newOrderNumber
     })
-    // { status: "Processing", changeDate: new Date() }, { status: "Awaiting payment", changeDate: new Date() },{ status: "Shipped", changeDate: new Date() }, { status: "Completed", changeDate: new Date() }, { status: "Canceled", changeDate: new Date() }
 
+    // { status: "Processing", changeDate: new Date() }, { status: "Awaiting payment", changeDate: new Date() },{ status: "Shipped", changeDate: new Date() }, { status: "Completed", changeDate: new Date() }, { status: "Canceled", changeDate: new Date() }
     // SAVES REFERANCE FOR LATEST ORDER NUMBER IN ORDER NUMBER TRACKER
     oldOrderNumber.orderNumber = newOrderNumber;
     oldOrderNumber.save();
+    await newOrder.save();
 
     // SETS EMPTY SHOPPING CART
     req.session.cart = null;
-    await newOrder.save();
 
     res.redirect("/shopping/orderSuccess");
+}))
+
+router.get("/orderSuccess", orderSuccessRouteGuard, catchAsync(async (req, res) => {
+    req.session.orderNo = null;
+    res.render("shopping/orderSuccess");
 }))
 
 
