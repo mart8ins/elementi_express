@@ -3,45 +3,45 @@
     <nav class="my-2 my-md-0 me-md-3">
 
         <!-- shopping cart for every user but not Admin-->
-        <% if(!isAdmin) {%>
-            <% if(cart_total) {%>
-                <a href="/shopping/cart" class="p-2 btn btn-outline-secondary btn-sm">Items in cart
-                    <% if(cart_total) {%>
-                        <span class="badge cart_total_q">
-                            <%= cart_total %>
-                        </span>
-                        <% } %>
-                </a>
-                <% } else {%>
-                    <a href="/shopping/cart" class="p-2 btn btn-outline-secondary btn-sm">Shopping cart
-                    </a>
+
+        <% if(cart_total) {%>
+            <a href="/shopping/cart" class="p-2 btn btn-outline-secondary btn-sm">Items in cart
+                <% if(cart_total) {%>
+                    <span class="badge cart_total_q">
+                        <%= cart_total %>
+                    </span>
                     <% } %>
+            </a>
+            <% } else {%>
+                <a href="/shopping/cart" class="p-2 btn btn-outline-secondary btn-sm">Shopping cart
+                </a>
+                <% } %>
+
+
+
+                    <!-- if user logged and is not admin -->
+                    <% if(userLoggedIn && !isAdmin) { %>
+                        <a href="/user/<%= userLoggedIn %>/orders"
+                            class="p-2 btn btn-outline-secondary btn-sm isUserOptions">Order
+                            history</a>
+                        <a href="/user/<%= userLoggedIn %>/profile" class="isUserName"><strong>
+                                <%= userLoggedInName %>
+                            </strong></a>
                         <% } %>
 
 
-                            <!-- if user logged and is not admin -->
-                            <% if(userLoggedIn && !isAdmin) { %>
-                                <a href="/user/<%= userLoggedIn %>/orders"
-                                    class="p-2 btn btn-outline-secondary btn-sm isUserOptions">Order
-                                    history</a>
-                                <a href="/user/<%= userLoggedIn %>/profile" class="isUserName"><strong>
+                            <!-- If user is ADMIN -->
+                            <% if(isAdmin) {%>
+                                <a class="isAdmin"><strong>
+                                        <span>Admin</span>
                                         <%= userLoggedInName %>
                                     </strong></a>
+                                <a class="p-2 btn btn-outline-secondary btn-sm" href="/manage/orders">Manage
+                                    orders</a>
+                                <a class="p-2 btn btn-outline-secondary btn-sm"
+                                    href="/manage/products">Manage
+                                    products</a>
                                 <% } %>
-
-
-                                    <!-- If user is ADMIN -->
-                                    <% if(isAdmin) {%>
-                                        <a class="isAdmin"><strong>
-                                                <span>Admin</span>
-                                                <%= userLoggedInName %>
-                                            </strong></a>
-                                        <a class="p-2 btn btn-outline-secondary btn-sm" href="/manage/orders">Manage
-                                            orders</a>
-                                        <a class="p-2 btn btn-outline-secondary btn-sm"
-                                            href="/manage/products">Manage
-                                            products</a>
-                                        <% } %>
 
     </nav>
 

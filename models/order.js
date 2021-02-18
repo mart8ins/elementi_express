@@ -26,10 +26,10 @@ const orderSchema = new Schema({
         type: Object, required: true
     },
     status: [orderStatusSchema],
-    // status: {
-    //     type: [String],
-    //     enum: ["Pending", "Processing", "Awaiting payment", "Shipped", "Completed", "Canceled"]
-    // },
+    currentStatus: {
+        type: [String],
+        enum: ["pending", "processing", "awaiting_payment", "shipped", "completed", "canceled"]
+    },
     orderNumber: {
         type: String,
         required: true

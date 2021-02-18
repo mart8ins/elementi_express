@@ -1,0 +1,37 @@
+/* .status_nav_container {
+    text-align: center;
+background-color: blanchedalmond;
+padding: 20px;
+} */
+
+.status_nav_container .status_nav_button {
+    text-align: center;
+    background-color: rgb(205, 238, 173);
+}
+.status_nav_container .status_nav_button:hover {
+    background-color: rgb(127, 202, 236);;
+}
+
+.status_nav_container .active {
+    background-color: green;
+}
+
+.status_nav_container .status_nav_button a {
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+}
+
+.order_statuses div a {
+    background-color: rgb(217, 228, 230);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    margin: 5px; 
+}
+.order_statuses div a:hover {
+    background-color: rgb(184, 193, 194);
+}

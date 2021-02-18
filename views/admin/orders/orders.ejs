@@ -1,3 +1,48 @@
 <% layout("/layout/boilerplate.ejs") %>
+    <%- include("./navigation.ejs") %>
 
-    Orders page
+        <div class="container mt-3 order_statuses">
+            <% for(let order of orders) {%>
+                <% let lastStatus=order.status.length - 1 %>
+                    <div class="row">
+                        <a href="/manage/orders/<%= order._id %>">
+
+                            <div class="col-3">
+                                <%= order.status[lastStatus].status %>
+                            </div>
+                            <div class="col-3">
+                                Order nummber <%= order.orderNumber %>
+                            </div>
+                            <div class="col-3">
+                                Created on <%= order.status[lastStatus].changeDate %>
+                            </div>
+                            <div class="col-3">
+                                <% if(order.user) {%>
+                                    Created by <%= order.user.username %>
+                                        <% } else {%>
+                                            Created by Anonīms
+                                            <% }%>
+                            </div>
+                        </a>
+                    </div>
+                    <% } %>
+        </div>
+
+        <!-- {
+            shipping: {
+              firstName: 'Mārtiņš',
+              lastName: 'Šķiņķis',
+              phone: '29141645',
+              email: 'martins_skinkis@inbox.lv',
+              address: 'Cēsu iela'
+            },
+            _id: 602ea1bf766cc142a425d32b,
+            user: 601ab36b7f6d2e427cb93e29,
+            status: [ [Object] ],
+            date: 'Thu Feb 18 2021 19:19:59 GMT+0200 (GMT+02:00)',
+            order: { products: [Object], cartTotals: [Object] },
+            orderNumber: 'E77',
+            __v: 0
+          }
+        
+        / { status: "Processing", changeDate: new Date() }, { status: "Awaiting payment", changeDate: new Date() }-->

@@ -7,6 +7,7 @@ module.exports.adminRouteGuard = function (req, res, next) {
     next();
 }
 
+
 module.exports.loggedUserRouteGuard = function (req, res, next) {
     if (!req.session.user_id) {
         res.redirect("/");

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { adminRouteGuard } = require("../utils/Middleware/routeGuarding");
+const Order = require("../models/order");
 
 
 /*****************
@@ -43,7 +44,6 @@ router.get("/products", catchAsync(async (req, res, next) => {
     const products = await Product.find({}).populate("category");
     res.render("admin/products/products", { categories, products })
 }))
-
 /* to add new product or category */
 router.post("/products", productValidation, categoryValidation, catchAsync(async (req, res, next) => {
     const { newProduct, newCategory } = req.body;
@@ -77,8 +77,6 @@ router.post("/products", productValidation, categoryValidation, catchAsync(async
     }
     res.redirect("/manage/products");
 }))
-
-
 /* update category OR edit product */
 router.patch("/products", catchAsync(async (req, res) => {
     const { categoryToChange, editProduct } = req.body;
@@ -144,8 +142,6 @@ router.patch("/products", catchAsync(async (req, res) => {
     }
     res.redirect("/manage/products");
 }))
-
-
 /* delete category */
 /* LATER i NEED TO UPDATE THIS DELETE OPTIONS TO ALSO DELETE associated PRODUCTS for CATEGORY */
 router.delete("/products", catchAsync(async (req, res) => {
@@ -157,7 +153,6 @@ router.delete("/products", catchAsync(async (req, res) => {
     }
     res.redirect("/manage/products");
 }))
-
 // edit specific product
 router.get("/products/:id/edit", catchAsync(async (req, res) => {
     const { id } = req.params;
@@ -167,8 +162,44 @@ router.get("/products/:id/edit", catchAsync(async (req, res) => {
 }))
 
 
-router.get("/orders", (req, res) => {
-    res.render("admin/orders/orders")
-})
+router.get("/orders", catchAsync(async (req, res) => {
+    // all orders
+    const ordersAll = await Order.find({}).populate("user");
+
+    // orders depending on status in query
+    const { status } = req.query;
+    if (status) {
+        const ordersByStatus = await Order.find({ currentStatus: { $in: status } }).populate("user");
+        console.log(ordersByStatus)
+        res.render("admin/orders/orders", { orders: ordersByStatus })
+    } else {
+        res.render("admin/orders/orders", { orders: ordersAll })
+    }
+
+}))
+
+
+router.get("/orders/:orderId", catchAsync(async (req, res) => {
+    res.render("admin/orders/details")
+}))
+
+// {
+//     shipping: {
+//       firstName: 'Mārtiņš',
+//       lastName: 'Šķiņķis',
+//       phone: '29141645',
+//       email: 'martins_skinkis@inbox.lv',
+//       address: 'Cēsu iela'
+//     },
+//     _id: 602ea1bf766cc142a425d32b,
+//     user: 601ab36b7f6d2e427cb93e29,
+//     status: [ [Object] ],
+//     date: 'Thu Feb 18 2021 19:19:59 GMT+0200 (GMT+02:00)',
+//     order: { products: [Object], cartTotals: [Object] },
+//     orderNumber: 'E77',
+//     __v: 0
+//   }
+
+// { status: "Processing", changeDate: new Date() }, { status: "Awaiting payment", changeDate: new Date() },{ status: "Shipped", changeDate: new Date() }, { status: "Completed", changeDate: new Date() }, { status: "Canceled", changeDate: new Date() } 
 
 module.exports = router;

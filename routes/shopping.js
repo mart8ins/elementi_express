@@ -72,7 +72,8 @@ router.post("/checkout", checkoutRouteGuard, catchAsync(async (req, res) => {
             email,
             address
         },
-        status: [{ status: "Pending", changeDate: new Date() }],
+        status: [{ status: "Pending", changeDate: new Date() }, { status: "Processing", changeDate: new Date() }],
+        currentStatus: "processing",
         date: new Date(),
         order: cart,
         orderNumber: newOrderNumber
