@@ -167,10 +167,12 @@ router.get("/orders", catchAsync(async (req, res) => {
     const ordersAll = await Order.find({}).populate("user");
 
     // orders depending on status in query
-    const { status } = req.query;
+    let { status } = req.query;
     if (status) {
+        if (status == "Awaiting_payment") {
+            status = "Awaiting payment"
+        }
         const ordersByStatus = await Order.find({ currentStatus: { $in: status } }).populate("user");
-        console.log(ordersByStatus)
         res.render("admin/orders/orders", { orders: ordersByStatus })
     } else {
         res.render("admin/orders/orders", { orders: ordersAll })
@@ -180,8 +182,33 @@ router.get("/orders", catchAsync(async (req, res) => {
 
 
 router.get("/orders/:orderId", catchAsync(async (req, res) => {
-    res.render("admin/orders/details")
+    const { orderId } = req.params;
+    const order = await Order.findById(orderId).populate("user");
+    // console.log(order)
+    res.render("admin/orders/details", { order })
 }))
+
+router.post("/orders/:orderId", catchAsync(async (req, res) => {
+    const { orderId } = req.params;
+    const order = await Order.findById(orderId);
+    if (req.body.status_change && req.body.status_change != "") {
+        order.currentStatus = req.body.status_change;
+        order.statusHistory.push({ status: req.body.status_change, changeDate: new Date().toUTCString() })
+    }
+    if (req.body.comment) {
+        order.comment = req.body.comment;
+    }
+    await order.save();
+    // console.log(order)
+    console.log(req.body)
+    res.redirect(`/manage/orders/${orderId}`)
+}))
+
+// statusHistory: [
+//     { status: 'Pending', changeDate: 'Sat, 20 Feb 2021 16:51:53 GMT' }
+//   ],
+//   currentStatus: 'Pending'
+
 
 // {
 //     shipping: {

@@ -1,20 +1,21 @@
 <% layout("/layout/boilerplate.ejs") %>
+    <link rel="stylesheet" href="/css/admin_orders.css">
     <%- include("./navigation.ejs") %>
 
         <div class="container mt-3 order_statuses">
             <% for(let order of orders) {%>
-                <% let lastStatus=order.status.length - 1 %>
+                <% let lastStatus=order.statusHistory.length - 1 %>
                     <div class="row">
                         <a href="/manage/orders/<%= order._id %>">
 
                             <div class="col-3">
-                                <%= order.status[lastStatus].status %>
+                                <%= order.statusHistory[lastStatus].status %>
                             </div>
                             <div class="col-3">
                                 Order nummber <%= order.orderNumber %>
                             </div>
                             <div class="col-3">
-                                Created on <%= order.status[lastStatus].changeDate %>
+                                Created on <%= order.statusHistory[lastStatus].changeDate %>
                             </div>
                             <div class="col-3">
                                 <% if(order.user) {%>

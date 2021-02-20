@@ -1,8 +1,3 @@
-/* .status_nav_container {
-    text-align: center;
-background-color: blanchedalmond;
-padding: 20px;
-} */
 
 .status_nav_container .status_nav_button {
     text-align: center;
@@ -34,4 +29,61 @@ padding: 20px;
 }
 .order_statuses div a:hover {
     background-color: rgb(184, 193, 194);
+}
+
+/* ORDER DETAILS */
+.details_order_container .row {
+    margin-top: 10px;
+}
+.details_order_number, .details_order_status, .details_order_date {
+    text-align: center;
+    font-weight: 500;
+    font-size: 26px;
+    padding-top: 15px;
+    color: white;
+}
+.details_order_date {
+    color: black;
+}
+.details_order_number {
+    background-color: rgba(168, 78, 78, 0.5);
+}
+.details_order_number span {
+    background-color: white;
+    color: black;
+    padding: 10px;
+}
+.details_order_status {
+    text-transform: capitalize;
+    background-color: rgb(39, 226, 39);
+    
+}
+
+.order_details_cart, .order_details_delivery {
+    margin-top: 5px;
+    box-shadow: 2px 2px 2px black;
+}
+
+.order_details_cart h6, .order_details_delivery h6, .order_details_info_status_edit h5 {
+    padding: 5px;
+    text-transform: uppercase;
+    border-bottom: 3px solid grey;
+    text-align: center;
+}
+
+.order_details_delivery div {
+    display: grid;
+    height: 90%;
+}
+.order_details_delivery div section {
+    align-self: center;
+    justify-self: center;
+}
+
+.order_details_cart table td {
+    vertical-align: middle;
+}
+
+.order_details_info_status_edit {
+    margin-bottom: 50px;
 }

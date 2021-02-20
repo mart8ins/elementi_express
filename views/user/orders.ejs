@@ -1,23 +1,31 @@
 <% layout("/layout/boilerplate.ejs") %>
-
+    <link rel="stylesheet" href="/css/user.css">
     <div class="container">
         <h2>Pasūtījumu vēsture</h2>
         <hr>
+
+
+
+
         <% if(userOrders.length) {%>
+
+
             <div class="accordion accordion-flush" id="accordionFlushExample">
                 <% for(let ord in userOrders) {%>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading-<%= userOrders[ord].orderNumber %>">
+
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#<%= userOrders[ord].orderNumber %>" aria-expanded="false"
                                 aria-controls="<%= userOrders[ord].orderNumber %>">
                                 <p>Pasūtījuma nummurs: <span class="order_number">
                                         <%= userOrders[ord].orderNumber %>
                                     </span></p>
-                                <% let activeStatus=userOrders[ord].status.length - 1 %>
-                                    <p style="margin-left: 60%">Status: <%= userOrders[ord].status[activeStatus].status
-                                            %>
-                                    </p>
+
+                                <p style="margin-left: 60%">Status: <%=
+                                        userOrders[ord].currentStatus
+                                        %>
+                                </p>
                             </button>
                         </h2>
                         <div id="<%= userOrders[ord].orderNumber %>" class="accordion-collapse collapse"
@@ -43,12 +51,12 @@
                                         <div class="col-6">
                                             <h6>Pasūtījuma apstrādes vēsture</h6>
 
-                                            <% if(userOrders[ord].status[0].status=="Pending" ) {%>
+                                            <% if(userOrders[ord].statusHistory[0].status=="Pending" ) {%>
                                                 <p>
                                                     Pasūtījums saņemts: <%= userOrders[ord].date %>
                                                 </p>
                                                 <% } %>
-                                                    <% for(let st of userOrders[ord].status) {%>
+                                                    <% for(let st of userOrders[ord].statusHistory) {%>
                                                         <% if(st.status=="Processing" ) {%>
                                                             <p>
                                                                 Sākta pasūtījuma apstrāde: <%= st.changeDate %>
@@ -132,6 +140,7 @@
                     </div>
                     <% } %>
             </div>
+
             <% } else {%>
                 <div class="row">
                     <div class="col-3 offset-5">
@@ -139,6 +148,8 @@
                     </div>
                 </div>
                 <% } %>
+
+
 
 
     </div>

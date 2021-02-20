@@ -79,7 +79,8 @@ router.get("/:id/orders", loggedUserManageGuard, catchAsync(async (req, res) => 
                 let ord = {
                     products: [],
                     date: allOrders[order].date,
-                    status: allOrders[order].status,
+                    statusHistory: allOrders[order].statusHistory,
+                    currentStatus: allOrders[order].currentStatus,
                     totalQ: allOrders[order].order.cartTotals.quantity,
                     totalSum: allOrders[order].order.cartTotals.price,
                     delivery: allOrders[order].shipping,
@@ -92,7 +93,6 @@ router.get("/:id/orders", loggedUserManageGuard, catchAsync(async (req, res) => 
             }
         }
     }
-    console.log(userOrders)
     res.render("user/orders", { userOrders });
 }))
 

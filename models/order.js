@@ -7,7 +7,8 @@ const orderStatusSchema = new Schema({
     },
     changeDate: {
         type: String
-    }
+    },
+    _id: false
 })
 
 const orderSchema = new Schema({
@@ -25,15 +26,19 @@ const orderSchema = new Schema({
     order: {
         type: Object, required: true
     },
-    status: [orderStatusSchema],
+    statusHistory: [orderStatusSchema],
     currentStatus: {
-        type: [String],
-        enum: ["pending", "processing", "awaiting_payment", "shipped", "completed", "canceled"]
+        type: String,
+        enum: ["Pending", "Processing", "Awaiting payment", "Shipped", "Completed", "Canceled"]
     },
     orderNumber: {
         type: String,
         required: true
+    },
+    comment: {
+        type: String
     }
+
 })
 
 module.exports = mongoose.model("Order", orderSchema)

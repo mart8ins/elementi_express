@@ -61,7 +61,6 @@ router.post("/checkout", checkoutRouteGuard, catchAsync(async (req, res) => {
     // for after checkout to use in locals and show in order success template
     req.session.orderNo = newOrderNumber;
 
-
     // SAVES ORDER IN DB
     const newOrder = await new Order({
         user: isRegisterUser ? isRegisterUser : null,
@@ -72,9 +71,9 @@ router.post("/checkout", checkoutRouteGuard, catchAsync(async (req, res) => {
             email,
             address
         },
-        status: [{ status: "Pending", changeDate: new Date() }, { status: "Processing", changeDate: new Date() }],
-        currentStatus: "processing",
-        date: new Date(),
+        statusHistory: [{ status: "Pending", changeDate: new Date().toUTCString() }],
+        currentStatus: "Pending",
+        date: new Date().toUTCString(),
         order: cart,
         orderNumber: newOrderNumber
     })

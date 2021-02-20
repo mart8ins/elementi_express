@@ -1,6 +1,155 @@
 <% layout("/layout/boilerplate.ejs") %>
+    <link rel="stylesheet" href="/css/admin_orders.css">
     <%- include("./navigation.ejs") %>
 
-        <div class="container mt-3">
-            <h5>Order E21</h5>
+        <div class="container mt-3 details_order_container">
+            <div class="row">
+                <div class="col-4 details_order_number">
+                    <p>Order number <span>
+                            <%= order.orderNumber %>
+                        </span></p>
+                </div>
+                <div class="col-4 details_order_date">
+                    <p>
+                        <%= order.date %>
+                    </p>
+                </div>
+                <div class="col-4 details_order_status">
+                    <p>
+                        <%= order.currentStatus %>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 order_details_cart">
+                    <h6>Pirkuma grozs</h6>
+                    <table class="table table-hover">
+
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Produkts</th>
+                                <th scope="col">Skaits</th>
+                                <th scope="col">Cena</th>
+                                <th scope="col">Summa</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% for(let pr in order.order.products) {%>
+                                <tr>
+                                    <th scope="row">
+                                        <img style="width: 60px" class="cart_image"
+                                            src="/images/<%= order.order.products[pr].model %>.jpg"
+                                            alt="Image of model gggg">
+                                    </th>
+                                    <td>
+                                        <%= order.order.products[pr].brand %>
+                                            <%= order.order.products[pr].model %>
+                                    </td>
+                                    <td>
+                                        <%= order.order.products[pr].quantity %>
+                                    </td>
+                                    <td>
+                                        <%= order.order.products[pr].price %> &euro;
+                                    </td>
+                                    <td>
+                                        <%= order.order.products[pr].total %> &euro;
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Vienību skaits</th>
+                                <th scope="col">
+                                    <%= order.order.cartTotals.quantity %>
+                                </th>
+                                <th scope="col">Groza summa</th>
+                                <th scope="col">
+                                    <%= order.order.cartTotals.price %> &euro;
+                                </th>
+                            </tr>
+                        </tfoot>
+
+
+                    </table>
+                </div>
+                <div class="col-6 order_details_delivery">
+                    <h6>Piegādes informācija</h6>
+                    <div>
+                        <section>
+                            <p>
+                                Adrese: <%= order.shipping.address %>
+                            </p>
+                            <p>
+                                Saņēmējs: <%= order.shipping.firstName %>
+                                    <%= order.shipping.lastName %>
+                            </p>
+                            <p>Telefons: <%= order.shipping.phone %>
+                            </p>
+                            <p>e-pasts: <%= order.shipping.email %>
+                            </p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 order_details_info_status_edit">
+                    <h5>Pasūtījuma apstrādes informācija</h5>
+                    <div class="row">
+
+                        <div class="col-6">
+                            <form action="/manage/orders/<%= order._id %>" method="post">
+                                <div class="form-group">
+                                    <label for="comment">Komentārs par pasūtījuma norisi</label>
+                                    <textarea class="form-control" name="comment" id="comment" cols="20"
+                                        rows="7" value="<%= order.comment %>"><%= order.comment %></textarea>
+                                </div>
+                                <button class="btn btn-primary btn-sm mt-2">Saglabāt</button>
+                            </form>
+                        </div>
+
+
+                        <div class="col-3 offset-1">
+                            <form action="/manage/orders/<%= order._id %>" method="post">
+                                <div class="form-group">
+                                    <label for="status_change">Pasūtījuma statusa maiņa</label>
+                                    <select class="form-control" name="status_change" id="status_change">
+                                        <option value="">
+                                            Mainīt statusu
+                                        </option>
+                                        <option value="Pending">
+                                            Pending
+                                        </option>
+                                        <option value="Processing">
+                                            Processing
+                                        </option>
+                                        <option value="Awaiting payment">
+                                            Awaiting payment
+                                        </option>
+                                        <option value="Shipped">
+                                            Shipped
+                                        </option>
+                                        <option value="Completed">
+                                            Completed
+                                        </option>
+                                        <option value="Canceled">
+                                            Canceled
+                                        </option>
+
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary btn-sm mt-2">Mainīt</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- { status: "Processing", changeDate: new Date() }, { status: "Awaiting payment", changeDate: new Date() },{ status: "Shipped", changeDate: new Date() }, { status: "Completed", changeDate: new Date() }, { status: "Canceled", changeDate: new Date() } -->
