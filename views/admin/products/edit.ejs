@@ -25,12 +25,12 @@
                     <div class="mb-3">
                         <label for="newPrice" class="form-label">New price</label>
                         <input name="editProduct[newPrice]" type="number" class="form-control" id="newPrice"
-                            placeholder="<%= product.price.new %>" required>
+                            value="<%= product.price.new %>" required>
                     </div>
                     <div class="mb-3">
                         <label for="oldPrice" class="form-label">Old price (optional)</label>
                         <input name="editProduct[oldPrice]" type="number" class="form-control" id="oldPrice"
-                            placeholder="<%= product.price.old %>">
+                            value="<%= product.price.old %>">
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="edit_product_button">
-                    <button type="submit" class="btn btn-secondary d-inline-block">Edit product</button>
+                    <button type="submit" class="btn btn-primary d-inline-block">Edit product</button>
                 </div>
             </form>
         </div>

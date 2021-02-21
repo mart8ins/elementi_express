@@ -1,0 +1,13 @@
+.container-fluid {
+    position: relative;
+    width:80%;
+    margin: 0 auto;
+    height: 90vh;
+    background-image: url("/images/kitchenhome.jpg");
+    background-size: cover;
+}
+.intro {
+    position: relative;
+    z-index: 1;
+    color: white;
+}

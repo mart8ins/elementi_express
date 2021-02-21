@@ -6,8 +6,9 @@
 
 /* CREATE PRODUCT */
 .add_new_product {
-    border : 1px solid black;
     padding: 20px;
+    background-color: #283747;
+    color: white;
 }
 .add_new_product form .price_container, .model_container {
     display: flex;
@@ -40,7 +41,8 @@
 
 /* CREATE CATEGORY */
 .add_new_category {
-    border: 1px solid black;
+    background-color: #283747;
+    color: white;
     padding: 20px;
     margin-top: 20px;
     text-align: center;
@@ -69,9 +71,10 @@
 /* ALL MODELS VIEW */
 
 .product_to_edit {
-    border: 1px solid black;
-    margin: 2px;
+    box-shadow: 2px 2px 5px grey;
+    margin: 10px;
     padding: 2px;
+    border-radius: 5px;
 }
 
 .product_to_edit:hover {
@@ -82,31 +85,30 @@
     place-items: center;
 }
 
-.product_to_edit .category {
-    font-style: italic;
-}
-
 .product_to_edit .brand_model {
     font-weight: bold;
+    text-shadow: 1px 1px 2px grey;
+    font-size: 22px;
 }
 
 .product_to_edit .new_price {
     color: white;
-    background-color: rgb(132, 170, 135);
+    background-color: #47704b;
     padding: 5px;
     text-align: center;
 }
 
 .product_to_edit .old_price {
     color: white;
-    background-color: rgb(175, 139, 139);
+    background-color: #B73225;
     padding: 5px;
     text-align: center;
 }
 
 .product_to_edit .new_price span, .old_price span {
 font-weight: bold;
-color: black;
+color: #DADED4;
+font-size: 18px;
 }
 
 .product_to_edit .buttons {
@@ -116,8 +118,9 @@ color: black;
 
 /* PRODUCTS EDIT PAGE */
 .edit_product {
-    border: 1px solid grey;
     padding: 20px 150px;
+    background-color: #283747;
+    color: white;
 }
 .edit_price, .edit_model, .edit_category {
     display: flex;

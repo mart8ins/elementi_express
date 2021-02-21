@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="button_container">
-                            <button type="submit" class="btn btn-primary d-inline-block">Create product</button>
+                            <button type="submit" class="btn btn-primary d-inline-block">Create</button>
                         </div>
                     </form>
                 </div>
@@ -94,7 +94,7 @@
                         <div class="create_category_container">
                             <input name="newCategory" type="text" class="form-control" name="newCategory"
                                 id="newCategory" required>
-                            <button class="btn btn-secondary">Create</button>
+                            <button class="btn btn-primary btn-sm">Create</button>
                         </div>
                     </form>
 
@@ -139,22 +139,25 @@
                 <% for(let product of products) {%>
 
                     <div class="row product_to_edit">
-                        <div class="col-2 category">
-
-                        </div>
                         <div class="col-5 brand_model">
                             <%= product.brand %>
                                 <%= product.model %>
                         </div>
-                        <div class="col-2 new_price">
+                        <div class="col-3 new_price">
                             New price: <span>
-                                <%= product.price.new %>
+                                <%= product.price.new %> &euro;
                             </span>
                         </div>
-                        <div class="col-2 old_price">
-                            Old price: <span>
-                                <%= product.price.old %>
-                            </span>
+                        <div class="col-3 old_price">
+                            <% if(product.price.old) {%>
+                                Old price: <span>
+                                    <%= product.price.old %> &euro;
+                                </span>
+                                <% } else {%>
+                                    Old price: <span>
+                                        <%= product.price.new %> &euro;
+                                    </span>
+                                    <% } %>
                         </div>
                         <div class="col-1 buttons">
                             <a href="/manage/products/<%= product._id %>/edit"><button
