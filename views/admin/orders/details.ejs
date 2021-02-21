@@ -79,20 +79,24 @@
                 </div>
                 <div class="col-6 order_details_delivery">
                     <h6>Piegādes informācija</h6>
-                    <div>
-                        <section>
+                    <div class="order_details_delivery_data">
+                        <div>
                             <p>
-                                Adrese: <%= order.shipping.address %>
+                                <strong>Adrese:</strong>
+                                <%= order.shipping.address %>
                             </p>
                             <p>
-                                Saņēmējs: <%= order.shipping.firstName %>
+                                <strong>Saņēmējs:</strong>
+                                <%= order.shipping.firstName %>
                                     <%= order.shipping.lastName %>
                             </p>
-                            <p>Telefons: <%= order.shipping.phone %>
+                            <p><strong>Telefons:</strong>
+                                <%= order.shipping.phone %>
                             </p>
-                            <p>e-pasts: <%= order.shipping.email %>
+                            <p><strong>e-pasts:</strong>
+                                <%= order.shipping.email %>
                             </p>
-                        </section>
+                        </div>
                     </div>
                 </div>
             </div>

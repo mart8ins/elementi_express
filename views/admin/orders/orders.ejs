@@ -3,18 +3,18 @@
     <%- include("./navigation.ejs") %>
 
         <div class="container mt-3 order_statuses">
-            <% for(let order of orders) {%>
+            <% for(let order of orders.reverse()) {%>
                 <% let lastStatus=order.statusHistory.length - 1 %>
                     <div class="row">
                         <a href="/manage/orders/<%= order._id %>">
 
-                            <div class="col-3">
+                            <div class="col-3 order_statuses_status">
                                 <%= order.statusHistory[lastStatus].status %>
                             </div>
-                            <div class="col-3">
+                            <div class="col-3 order_statuses_order">
                                 Order nummber <%= order.orderNumber %>
                             </div>
-                            <div class="col-3">
+                            <div class="col-3 order_statuses_date">
                                 Created on <%= order.statusHistory[lastStatus].changeDate %>
                             </div>
                             <div class="col-3">

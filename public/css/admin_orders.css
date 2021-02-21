@@ -1,37 +1,49 @@
 
-.status_nav_container .status_nav_button {
+/* navigation.ejs */
+.status_nav_container {
     text-align: center;
-    background-color: rgb(205, 238, 173);
+    background-color: #932432;
+    font-weight: bold;
+    padding: 5px 1px;
 }
-.status_nav_container .status_nav_button:hover {
-    background-color: rgb(127, 202, 236);;
-}
-
-.status_nav_container .active {
-    background-color: green;
-}
-
 .status_nav_container .status_nav_button a {
     text-decoration: none;
-    color: black;
     text-transform: uppercase;
+    color: white;
+    border-bottom: 1px solid white;
+    
+}
+.status_nav_container .status_nav_button:hover {
+    background-color: #b46872;
 }
 
+/* orders.ejs */
 .order_statuses div a {
-    background-color: rgb(217, 228, 230);
+    background-color: #283747;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    color: black;
+    color: rgb(236, 231, 219);
     text-align: center;
     margin: 5px; 
+    padding: 10px;
 }
 .order_statuses div a:hover {
-    background-color: rgb(184, 193, 194);
+    background-color: #8c9bac;
 }
 
-/* ORDER DETAILS */
+.order_statuses_status, .order_statuses_order {
+    font-weight: bold;
+    font-size: 22px;
+    color: #9DC88D;
+}
+.order_statuses_date {
+    font-size: 14px;
+    color: #9DC88D;
+}
+
+/* details.ejs */
 .details_order_container .row {
     margin-top: 10px;
 }
@@ -46,7 +58,7 @@
     color: black;
 }
 .details_order_number {
-    background-color: rgba(168, 78, 78, 0.5);
+    background-color: #a28089;
 }
 .details_order_number span {
     background-color: white;
@@ -55,7 +67,7 @@
 }
 .details_order_status {
     text-transform: capitalize;
-    background-color: rgb(39, 226, 39);
+    background-color: #4D774E;
     
 }
 
@@ -71,13 +83,15 @@
     text-align: center;
 }
 
-.order_details_delivery div {
-    display: grid;
-    height: 90%;
+.order_details_info_status_edit h5 {
+    background-color: #a28089;
+    color: white;
 }
-.order_details_delivery div section {
-    align-self: center;
-    justify-self: center;
+
+.order_details_delivery {
+    display: grid;
+    justify-content: center;
+    align-content: center;
 }
 
 .order_details_cart table td {
@@ -86,4 +100,7 @@
 
 .order_details_info_status_edit {
     margin-bottom: 50px;
+}
+.order_details_info_status_edit label {
+    font-size: 18px;
 }
