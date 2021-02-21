@@ -12,6 +12,12 @@ const {
     getOrderData,
     changeOrderStatusOrComment } = require("../controlers/admin");
 
+/*****************
+middleware for product input validation
+*******************/
+const productValidation = require("../utils/ValidationHandling/productValidation");
+const categoryValidation = require("../utils/ValidationHandling/categoryValidation");
+
 
 /*****************
     ROUTE GUARD FOR ADMIN
@@ -32,7 +38,7 @@ router.use((req, res, next) => {
 *******************/
 router.route("/products")
     .get(getProductsCategories())
-    .post(createProductOrCategory())
+    .post(productValidation, categoryValidation, createProductOrCategory())
     .patch(editCategoryOrProduct())
     .delete(deleteCategory())
 

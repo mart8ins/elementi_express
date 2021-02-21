@@ -10,12 +10,6 @@ const Order = require("../models/order");
 *******************/
 const catchAsync = require("../utils/ErrorHandling/catchAsync");
 
-/*****************
-    middleware for product input validation
-*******************/
-const productValidation = require("../utils/ValidationHandling/productValidation");
-const categoryValidation = require("../utils/ValidationHandling/categoryValidation");
-
 
 module.exports.getProductsCategories = function () {
     return catchAsync(async (req, res, next) => {
@@ -26,7 +20,7 @@ module.exports.getProductsCategories = function () {
 }
 
 module.exports.createProductOrCategory = function () {
-    return productValidation, categoryValidation, catchAsync(async (req, res, next) => {
+    return catchAsync(async (req, res, next) => {
         const { newProduct, newCategory } = req.body;
         // if new product category is created
         if (newCategory) {
