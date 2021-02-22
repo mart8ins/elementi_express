@@ -1,3 +1,13 @@
+.back_to_about {
+    padding: 5px 100px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.back_to_about a button {
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
 /* product card */
 .card_container {
 display: flex;

@@ -1,6 +1,23 @@
+.back_to_products {
+    padding: 5px 100px;
+    text-transform: uppercase;
+}
+.back_to_products a button {
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
 .product_details {
+    position: relative;
+    margin-top: 50px;
     border-radius: 10px;
-    background-color: rgb(216, 216, 216);
+    background-color: #214151;
+    padding: 20px;
+}
+.product_image_container {
+background-color: white;
+}
+.product_image_container img {
     padding: 20px;
 }
 
@@ -12,40 +29,36 @@
     text-align: center;
 }
 
+.product_details .top-row .description {
+    height: 100%;
+}
+
 .product_details .top-row .description p {
     background-color: white;
     padding: 15px;
     border-radius: 10px;
+    height: 75%;
 }
 
-.product_details .top-row .price {
-display: flex;
-justify-content: flex-end;
-position: absolute;
-top: 85px;
-right: 190px;
-}
-
-.product_details .top-row .price .new, .old {
-    background-color: white;
-    padding: 15px;
-    display: inline-block;
-}
-
-.product_details .top-row .price .new {
-    background-color: rgba(126, 252, 0, 0.719);
-    border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 45px;
-}
-
-.product_details .top-row .price .old {
-    background-color: rgba(241, 135, 135, 0.719);
-    border-radius: 20px;
+.new_price, .old_price {
+    position: relative;
+    left: 90px;
+    background-color: #314e52;
     padding: 5px 10px;
-    font-size: 20px;
+    border-radius: 5px;
+    color: white;
+    letter-spacing: 1px;
+ 
+}
+.new_price {
+    font-size: 34px;
+}
+.old_price {
+    left: 120px;
     text-decoration: line-through;
-    align-self: start;
+    color: white;
+    background-color: rgb(173, 154, 154);
+    border-radius: 40px;
 }
 
 .add_to_cart {

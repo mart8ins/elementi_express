@@ -1,11 +1,17 @@
 <% layout("/layout/boilerplate.ejs") %>
     <link rel="stylesheet" href="/css/user.css">
+
+    <div class="back_to_products bg-dark bg-gradient shadow-lg">
+        <a href="/user/<%= loggedUser._id %>/profile "><button
+                class="p-1 btn btn-outline-info btn-sm"><span>&#8592;</span> Uz profilu</button></a>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="card col-4 offset-4">
                 <div class="card-body user_profile_edit_profile_img">
                     <h5 class="card-title">
-                        <%= loggedUser.username %>`s profile
+                        Edit <%= loggedUser.username %>`s profile
                     </h5>
                     <img class="card-img-top" src="/images/no_user.png" alt="Card image cap"
                         style="width: 200px">
