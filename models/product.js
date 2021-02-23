@@ -30,6 +30,10 @@ const productSchema = new Schema({
     },
     category: {
         type: Schema.Types.ObjectId, ref: "Category"
+    },
+    active: {
+        type: Boolean,
+        required: true
     }
 })
 

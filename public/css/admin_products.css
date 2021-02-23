@@ -1,4 +1,14 @@
 
+.back_to_products {
+    padding: 5px 100px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.back_to_products a button {
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
 /* succes message when created category or product*/
 .created_succes_msg {
     font-weight: bold;
@@ -128,4 +138,21 @@ font-size: 18px;
 }
 .edit_product_button {
     text-align: center;
+}
+.delete_hide_btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.current_product_status {
+    background-color: #3d4e5f;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.current_product_status span {
+    font-weight: bold;
+    color: rgb(5, 190, 5);
+    font-size: 22px;
 }

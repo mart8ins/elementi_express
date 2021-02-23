@@ -42,7 +42,8 @@ module.exports.createProductOrCategory = function () {
                 },
                 description: newProduct.description,
                 onSale: newProduct.onSale,
-                category: cat // reference to category
+                category: cat, // reference to category,
+                active: true
             })
             cat.products.unshift(createdProduct); // pushing in current category products array a reference to created product
             req.flash("product-succes", `Successfuly created new product - ${newProduct.brand} ${newProduct.model}!`)
@@ -179,8 +180,25 @@ module.exports.changeOrderStatusOrComment = function () {
             order.comment = req.body.comment;
         }
         await order.save();
-        // console.log(order)
-        console.log(req.body)
         res.redirect(`/manage/orders/${orderId}`)
     })
+}
+
+module.exports.deleteOrHideUnhideProduct = function () {
+    return catchAsync(
+        async (req, res) => {
+            const { id } = req.params;
+            const { action } = req.query;
+            if (action == "delete") {
+                await Product.deleteOne({ _id: id });
+                res.redirect(`/manage/products`)
+            }
+            if (action == "hide") {
+                const hideUnhide = await Product.findById(id);
+                await !hideUnhide.active ? hideUnhide.active = true : hideUnhide.active = false;
+                await hideUnhide.save();
+                res.redirect(`/manage/products/${id}/edit`)
+            }
+        }
+    )
 }

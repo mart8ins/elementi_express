@@ -10,7 +10,8 @@ const {
     editProduct,
     getOrders,
     getOrderData,
-    changeOrderStatusOrComment } = require("../controlers/admin");
+    changeOrderStatusOrComment,
+    deleteOrHideUnhideProduct } = require("../controlers/admin");
 
 /*****************
 middleware for product input validation
@@ -42,7 +43,10 @@ router.route("/products")
     .patch(editCategoryOrProduct())
     .delete(deleteCategory())
 
-router.get("/products/:id/edit", editProduct())
+router.route("/products/:id/edit")
+    .get(editProduct())
+    .post(deleteOrHideUnhideProduct())
+
 
 router.route("/orders")
     .get(getOrders())

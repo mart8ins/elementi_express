@@ -1,84 +1,118 @@
 <% layout("/layout/boilerplate.ejs") %>
     <link rel="stylesheet" href="/css/admin_products.css">
+
+    <div class="back_to_products bg-dark bg-gradient shadow-lg">
+        <a href="/manage/products"><button
+                class="p-1 btn btn-outline-info btn-sm"><span>&#8592;</span>Atpakaļ</button></a>
+    </div>
+
+
     <div class="container">
-        <div class="edit_product">
-            <form action="/manage/products?id=<%= product._id %>&_method=PATCH" method="post" class="needs-validation"
-                novalidate>
-
-                <!-- to add model and brand -->
-                <div class="form-group edit_model">
-                    <div class="mb-3">
-                        <label for="brand" class="form-label">Brand</label>
-                        <input name="editProduct[brand]" type="text" class="form-control" id="brand"
-                            value="<%= product.brand %>" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="model" class="form-label">Model</label>
-                        <input name="editProduct[model]" type="text" class="form-control" id="model"
-                            value="<%= product.model %>" required>
-                    </div>
+        <% if(product.active) {%>
+            <div class="current_product_status">
+                Product currently <span>active</span> in e-shop
+            </div>
+            <% } else {%>
+                <div class="current_product_status">
+                    Product currently is <span>hidden</span> in e-shop
                 </div>
+                <% } %>
 
-                <!-- to add prices-->
-                <div class="edit_price">
-                    <div class="mb-3">
-                        <label for="newPrice" class="form-label">New price</label>
-                        <input name="editProduct[newPrice]" type="number" class="form-control" id="newPrice"
-                            value="<%= product.price.new %>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="oldPrice" class="form-label">Old price (optional)</label>
-                        <input name="editProduct[oldPrice]" type="number" class="form-control" id="oldPrice"
-                            value="<%= product.price.old %>">
-                    </div>
-                </div>
+                    <div class="edit_product">
+                        <form action="/manage/products?id=<%= product._id %>&_method=PATCH" method="post"
+                            class="needs-validation"
+                            novalidate>
 
-                <!-- to add category -->
-                <div class="edit_category">
-                    <div class="mb-3">
-                        <select name="editProduct[category]" class="form-select form-control"
-                            aria-label="Default select example" required>
-                            <option value="<%= product.category.category %>">
-                                <%= product.category.category %>
-                            </option>
-                            <% for(let i of categories) { %>
-                                <% if(product.category.category !=i.category) {%>
-                                    <option value="<%= i.category %>">
-                                        <%= i.category %>
-                                    </option>
+                            <!-- to add model and brand -->
+                            <div class="form-group edit_model">
+                                <div class="mb-3">
+                                    <label for="brand" class="form-label">Brand</label>
+                                    <input name="editProduct[brand]" type="text" class="form-control" id="brand"
+                                        value="<%= product.brand %>" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="model" class="form-label">Model</label>
+                                    <input name="editProduct[model]" type="text" class="form-control" id="model"
+                                        value="<%= product.model %>" required>
+                                </div>
+                            </div>
+
+                            <!-- to add prices-->
+                            <div class="edit_price">
+                                <div class="mb-3">
+                                    <label for="newPrice" class="form-label">New price</label>
+                                    <input name="editProduct[newPrice]" type="number" class="form-control" id="newPrice"
+                                        value="<%= product.price.new %>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="oldPrice" class="form-label">Old price (optional)</label>
+                                    <input name="editProduct[oldPrice]" type="number" class="form-control" id="oldPrice"
+                                        value="<%= product.price.old %>">
+                                </div>
+                            </div>
+
+                            <!-- to add category -->
+                            <div class="edit_category">
+                                <div class="mb-3">
+                                    <select name="editProduct[category]" class="form-select form-control"
+                                        aria-label="Default select example" required>
+                                        <option value="<%= product.category.category %>">
+                                            <%= product.category.category %>
+                                        </option>
+                                        <% for(let i of categories) { %>
+                                            <% if(product.category.category !=i.category) {%>
+                                                <option value="<%= i.category %>">
+                                                    <%= i.category %>
+                                                </option>
+                                                <% } %>
+                                                    <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-check">
+                                    <% if(product.onSale) {%>
+                                        <input name="editProduct[onSale]" class="form-check-input" type="checkbox"
+                                            value="<%= product.onSale %>"
+                                            id="onSale" checked>
+                                        <% } else {%>
+                                            <input name="editProduct[onSale]" class="form-check-input" type="checkbox"
+                                                value="true"
+                                                id="onSale">
+                                            <% } %>
+
+                                                <label class="form-check-label" for="onSale">
+                                                    Izpārdošanas produkts
+                                                </label>
+                                </div>
+                            </div>
+
+                            <!-- to add description -->
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" name="editProduct[description]" id="description"
+                                    cols="33"
+                                    rows="8"
+                                    required><%= product.description %></textarea>
+                            </div>
+
+                            <div class="edit_product_button">
+                                <button type="submit" class="btn btn-primary d-inline-block">Save changes for
+                                    product</button>
+                            </div>
+                        </form>
+                        <div class="delete_hide_btns">
+                            <form action="/manage/products/<%= product._id %>/edit?action=delete" method="post">
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                            <% if(product.active) {%>
+                                <form action="/manage/products/<%= product._id %>/edit?action=hide" method="post">
+                                    <button class="btn btn-info btn-sm">Hide for users</button>
+                                </form>
+                                <% } else {%>
+                                    <form action="/manage/products/<%= product._id %>/edit?action=hide" method="post">
+                                        <button class="btn btn-info btn-sm">Unhide for users</button>
+                                    </form>
                                     <% } %>
-                                        <% } %>
-                        </select>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <% if(product.onSale) {%>
-                            <input name="editProduct[onSale]" class="form-check-input" type="checkbox"
-                                value="<%= product.onSale %>"
-                                id="onSale" checked>
-                            <% } else {%>
-                                <input name="editProduct[onSale]" class="form-check-input" type="checkbox"
-                                    value="true"
-                                    id="onSale">
-                                <% } %>
-
-                                    <label class="form-check-label" for="onSale">
-                                        Izpārdošanas produkts
-                                    </label>
-                    </div>
-                </div>
-
-                <!-- to add description -->
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" name="editProduct[description]" id="description" cols="33"
-                        rows="8"
-                        required><%= product.description %></textarea>
-                </div>
-
-                <div class="edit_product_button">
-                    <button type="submit" class="btn btn-primary d-inline-block">Edit product</button>
-                </div>
-            </form>
-        </div>
     </div>

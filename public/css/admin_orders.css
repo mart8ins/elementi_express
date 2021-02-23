@@ -1,4 +1,14 @@
 
+.back_to_products {
+    padding: 5px 100px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.back_to_products a button {
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
 /* navigation.ejs */
 .status_nav_container {
     text-align: center;

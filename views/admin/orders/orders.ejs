@@ -1,7 +1,14 @@
 <% layout("/layout/boilerplate.ejs") %>
     <link rel="stylesheet" href="/css/admin_orders.css">
-    <%- include("./navigation.ejs") %>
+    <div class="back_to_products bg-dark bg-gradient shadow-lg">
+        <a href="/products"><button class="p-1 btn btn-outline-info btn-sm"><span>&#8592;</span> Uz
+                e-veikalu</button></a>
+    </div>
 
+
+
+
+    <%- include("./navigation.ejs") %>
         <div class="container mt-3 order_statuses">
             <% for(let order of orders.reverse()) {%>
                 <% let lastStatus=order.statusHistory.length - 1 %>
