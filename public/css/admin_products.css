@@ -80,6 +80,13 @@
 
 /* ALL MODELS VIEW */
 
+.product_to_edit_active {
+    border: 2px solid green;
+}
+.product_to_edit_hidden {
+    border: 2px solid red;
+}
+
 .product_to_edit {
     box-shadow: 2px 2px 5px grey;
     margin: 10px;
@@ -98,7 +105,7 @@
 .product_to_edit .brand_model {
     font-weight: bold;
     text-shadow: 1px 1px 2px grey;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .product_to_edit .new_price {

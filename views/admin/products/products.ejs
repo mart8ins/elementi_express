@@ -143,7 +143,8 @@
 
                 <% for(let product of products) {%>
 
-                    <div class="row product_to_edit">
+                    <div class="row product_to_edit <%= product.active ? " product_to_edit_active"
+                        : "product_to_edit_hidden" %>">
                         <div class="col-5 brand_model">
                             <%= product.brand %>
                                 <%= product.model %>
@@ -168,6 +169,7 @@
                             <a href="/manage/products/<%= product._id %>/edit"><button
                                     class="btn btn-sm btn-secondary">Edit</button></a>
                         </div>
+
 
                     </div>
                     <% } %>

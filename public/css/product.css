@@ -42,7 +42,7 @@ background-color: white;
 
 .new_price, .old_price {
     position: relative;
-    left: 90px;
+    left: 20px;
     background-color: #314e52;
     padding: 5px 10px;
     border-radius: 5px;
@@ -54,7 +54,7 @@ background-color: white;
     font-size: 34px;
 }
 .old_price {
-    left: 120px;
+    left: 30px;
     text-decoration: line-through;
     color: white;
     background-color: rgb(173, 154, 154);
