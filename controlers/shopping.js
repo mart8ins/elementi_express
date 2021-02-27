@@ -44,7 +44,13 @@ module.exports.removeFromShoppingCart = function () {
 
 module.exports.renderCheckout = function () {
     return catchAsync(async (req, res) => {
-        res.render("shopping/checkout");
+        let delivery = {};
+        if (req.session.user_id) {
+            const user = await User.findById(req.session.user_id);
+            delivery = user.delivery;
+            delivery.email = user.email;
+        }
+        res.render("shopping/checkout", { delivery });
     })
 }
 

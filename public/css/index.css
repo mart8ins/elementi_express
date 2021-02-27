@@ -7,7 +7,7 @@ body {
     width:80%;
     margin: 0 auto;
     margin-bottom: 50px;
-    height: 90vh;
+    height: 80vh;
     background-image: url("/images/kitchenhome.jpg");
     background-size: cover;
     box-shadow: 0px 3px 5px 12px rgba(0,0,0,0.54);
@@ -26,7 +26,6 @@ body {
 .about_us, .to_eshop {
     display: inline-block;
     padding: 20px 30px;
-    /* font-size: 3vw; */
     font-weight: bold;
     color: white;
     border-radius: 30px;
@@ -34,21 +33,7 @@ body {
     transition: 1s;
     margin: 10px;
 }
-@media screen and (min-width: 1001px) {
-    .about_us, .to_eshop {
-      font-size: 68px;
-    }
-  }
-@media screen and (max-width: 1000px) {
-    .about_us, .to_eshop {
-      font-size: 38px;
-    }
-  }
-@media screen and (max-width: 700px) {
-    .about_us, .to_eshop {
-      font-size: 18px;
-    }
-  }
+
 
 .about_us {
     background-color: rgba(0,0,0,0.9);
@@ -67,4 +52,24 @@ body {
 .about_us:hover, .to_eshop:hover {
     opacity: 1;
     transform: scale(1.2);
+}
+
+@media screen and (min-width: 1001px) {
+  .about_us, .to_eshop {
+    font-size: 3rem;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .about_us, .to_eshop {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 700px) {
+  .about_us, .to_eshop {
+    font-size: 1rem;
+  }
+  .intro {
+    display: flex;
+    flex-direction: column;
+}
 }

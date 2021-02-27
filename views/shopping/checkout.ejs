@@ -15,7 +15,7 @@
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Vārds</label>
                                 <input type="text" class="form-control" id="firstName" name="firstName" placeholder=""
-                                    value="" required>
+                                    value="<%= delivery.firstName ? delivery.firstName : ''%>" required>
                                 <div class="invalid-feedback">
                                     Lūdzu ievadiet kontaktpersonas vārdu.
                                 </div>
@@ -24,7 +24,7 @@
                             <div class="col-sm-6">
                                 <label for="lastName" class="form-label">Uzvārds</label>
                                 <input type="text" class="form-control" id="lastName" name="lastName" placeholder=""
-                                    value="" required>
+                                    value="<%= delivery.lastName ? delivery.lastName : ''%>" required>
                                 <div class="invalid-feedback">
                                     Lūdzu ievadiet kontaktpersonas uzvārdu.
                                 </div>
@@ -33,6 +33,7 @@
                             <div class="col-sm-6">
                                 <label for="phone" class="form-label">Telefona nummurs</label>
                                 <input type="text" class="form-control" id="phone" name="phone"
+                                    value="<%= delivery.phone ? delivery.phone : ''%>"
                                     required>
                                 <div class="invalid-feedback">
                                     Lūgums ievadīt derīgu telefona nummuru saziņai par pasūtījumu.
@@ -42,6 +43,7 @@
                             <div class="col-sm-6">
                                 <label for="email" class="form-label">E-pasts</label>
                                 <input type="email" class="form-control" id="email" name="email"
+                                    value="<%= delivery.email ? delivery.email : ''%>"
                                     required>
                                 <div class="invalid-feedback">
                                     Lūgums ievadīt derīgu e-pasta adresi priekš rēķina nosūtīšanas.
@@ -51,6 +53,7 @@
                             <div class="col-12">
                                 <label for="address" class="form-label">Piegādes adrese</label>
                                 <input type="text" class="form-control" id="address" name="address"
+                                    value="<%= delivery.address ? delivery.address : ''%>"
                                     required>
                                 <div class="invalid-feedback">
                                     Lūgums ievadīt piegādes adresi.
