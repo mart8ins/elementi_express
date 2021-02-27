@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../utils/ErrorHandling/catchAsync");
+const Category = require("../models/category");
 
 
 
-// landing page, with all categories and products
 router.get("/", catchAsync(async (req, res) => {
     res.render("index")
 }))
@@ -12,5 +12,13 @@ router.get("/", catchAsync(async (req, res) => {
 router.get("/about", catchAsync(async (req, res) => {
     res.render("about")
 }))
+
+router.get("/shop", catchAsync(async (req, res) => {
+    // categories consists of all categories and also products for each categorie
+    const categories = await Category.find({}).populate("products");
+    console.log(categories)
+    res.render("products/categories", { categories })
+}))
+
 
 module.exports = router;

@@ -4,14 +4,16 @@ const catchAsync = require("../utils/ErrorHandling/catchAsync");
 const Category = require("../models/category");
 const { renderProduct, addProductToCart } = require("../controlers/products");
 
-// product details view
-router.route("/")
+// all products for specific category
+router.route("/:categoryId")
     .get(catchAsync(async (req, res) => {
-        const categories = await Category.find({}).populate("products");
-        res.render("products/index", { categories })
+        const { categoryId } = req.params;
+        const category = await Category.findById(categoryId).populate("products");
+        res.render("products/products", { category })
     }))
 
-router.route("/:id")
+// product details page
+router.route("/:categoryId/:productId")
     .get(renderProduct())
     .post(addProductToCart())
 

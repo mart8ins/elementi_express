@@ -2,8 +2,8 @@
     <link rel="stylesheet" href="/css/product.css">
 
     <div class="back_to_products bg-dark bg-gradient shadow-lg">
-        <a href="/products"><button class="p-1 btn btn-outline-info btn-sm"><span>&#8592</span>Visi
-                produkti</button></a>
+        <a href="/products/<%= categoryId %>"><button
+                class="p-1 btn btn-outline-info btn-sm"><span>&#8592</span>Kategorijas produkti</button></a>
     </div>
 
     <div class="container product_details">
@@ -42,7 +42,7 @@
         <div class="row bottom-row">
             <div class="col-7 offset-5">
                 <div class="add_to_cart">
-                    <form action="/products/<%= product._id %>" method="post">
+                    <form action="/products/<%= categoryId %>/<%= product._id %>" method="post">
                         <div class="pluss_minuss">
                             <!-- <span><i class="fas fa-minus-circle"></i></span> -->
                             <label for="quantity">Quantity</label>

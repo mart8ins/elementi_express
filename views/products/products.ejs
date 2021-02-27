@@ -1,0 +1,42 @@
+<% layout("/layout/boilerplate.ejs") %>
+    <link rel="stylesheet" href="/css/products.css">
+
+
+    <div class="back_to_about bg-dark bg-gradient shadow-lg">
+        <a href="/shop"><button class="p-1 btn btn-outline-info btn-sm"><span>&#8592</span>Visas
+                kategorijas</button></a>
+    </div>
+
+
+    <div class="container">
+        <div class="card_container">
+            <!-- produkta kartiņa-->
+            <% for(let product of category.products) {%>
+                <div class="card product_card">
+                    <div class="product_image_container">
+                        <img src="/images/<%= product.model %>.jpg" class="card-img-top"
+                            alt="">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-title product_card_title">
+                            <strong>
+                                <%= product.brand %>
+                                    <%= product.model %>
+                            </strong>
+                        </p>
+                        <p class="card-text">
+                            Cena <span class="newPriceShow">
+                                <%= product.price.new %> &euro;
+                            </span>
+
+                            <span class="oldPriceShow">
+                                <%= product.price.old %> &euro;
+                            </span>
+                        </p>
+                        <a href="/products/<%= category._id %>/<%= product._id %>"
+                            class="btn btn-primary btn-sm">Produkta info</a>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+    </div>
