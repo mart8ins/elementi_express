@@ -16,7 +16,6 @@ router.get("/about", catchAsync(async (req, res) => {
 router.get("/shop", catchAsync(async (req, res) => {
     // categories consists of all categories and also products for each categorie
     const categories = await Category.find({}).populate("products");
-    console.log(categories)
     res.render("products/categories", { categories })
 }))
 

@@ -170,7 +170,6 @@ module.exports.getOrderData = function () {
     return catchAsync(async (req, res) => {
         const { orderId } = req.params;
         const order = await Order.findById(orderId).populate("user");
-        console.log(order.products)
         res.render("admin/orders/details", { order })
     })
 }
