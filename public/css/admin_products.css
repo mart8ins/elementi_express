@@ -49,6 +49,30 @@
     justify-content: space-around;
 }
 
+.add_new_product .image_upload {
+    width: 85%;
+    margin: 0 auto;
+    font-size: 0.6rem;
+}
+.add_new_product .image_upload label {
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    font-size: 0.7rem;
+}
+.add_new_product .image_upload input {
+    font-size: 0.8rem;
+}
+
+
+
+
+
+
+
+
+
+
 /* CREATE CATEGORY */
 .add_new_category {
     background-color: #283747;

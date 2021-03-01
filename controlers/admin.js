@@ -1,3 +1,5 @@
+
+
 /*****************
     models
 *******************/
@@ -43,7 +45,11 @@ module.exports.createProductOrCategory = function () {
                 description: newProduct.description,
                 onSale: newProduct.onSale,
                 category: cat, // reference to category,
-                active: true
+                active: true,
+                image: {
+                    url: req.file.path,
+                    fileName: req.file.filename
+                }
             })
             cat.products.unshift(createdProduct); // pushing in current category products array a reference to created product
             req.flash("product-succes", `Successfuly created new product - ${newProduct.brand} ${newProduct.model}!`)
@@ -164,6 +170,7 @@ module.exports.getOrderData = function () {
     return catchAsync(async (req, res) => {
         const { orderId } = req.params;
         const order = await Order.findById(orderId).populate("user");
+        console.log(order.products)
         res.render("admin/orders/details", { order })
     })
 }

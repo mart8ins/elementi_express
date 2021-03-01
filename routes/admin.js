@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
+
 const express = require("express");
 const router = express.Router();
 const { adminRouteGuard } = require("../utils/Middleware/routeGuarding");
@@ -19,6 +23,13 @@ middleware for product input validation
 const productValidation = require("../utils/ValidationHandling/productValidation");
 const categoryValidation = require("../utils/ValidationHandling/categoryValidation");
 
+/* 
+IMAGE UPLOAD USING MULTER, STORING IN CLOUDINARY SERVICE
+ */
+const { storage } = require("../cloudinary/index");
+const multer = require("multer");
+const upload = multer({ storage })
+
 
 /*****************
     ROUTE GUARD FOR ADMIN
@@ -39,7 +50,7 @@ router.use((req, res, next) => {
 *******************/
 router.route("/products")
     .get(getProductsCategories())
-    .post(productValidation, categoryValidation, createProductOrCategory())
+    .post(productValidation, categoryValidation, upload.single("newProduct[image]"), createProductOrCategory())
     .patch(editCategoryOrProduct())
     .delete(deleteCategory())
 

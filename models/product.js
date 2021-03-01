@@ -34,6 +34,14 @@ const productSchema = new Schema({
     active: {
         type: Boolean,
         required: true
+    },
+    image: {
+        url: {
+            type: String
+        },
+        fileName: {
+            type: String
+        }
     }
 })
 

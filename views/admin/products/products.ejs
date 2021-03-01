@@ -13,7 +13,8 @@
             ************************************** -->
             <div class="col-5">
                 <div class="add_new_product">
-                    <form action="/manage/products" method="post" class="needs-validation" novalidate>
+                    <form action="/manage/products" method="post" class="needs-validation" enctype="multipart/form-data"
+                        novalidate>
                         <!-- to add model and brand -->
                         <p class="created_succes_msg">
                             <%= messageProduct %>
@@ -65,6 +66,12 @@
                                 <label class="form-check-label" for="onSale">
                                     Izpārdošanas produkts
                                 </label>
+                            </div>
+                        </div>
+                        <div class="image_upload">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupFile01">Pievienot bildi</label>
+                                <input type="file" name="newProduct[image]" class="form-control" id="inputGroupFile01">
                             </div>
                         </div>
 

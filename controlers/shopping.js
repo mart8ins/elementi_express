@@ -19,11 +19,14 @@ module.exports.renderShoppingCart = function () {
     return catchAsync(async (req, res) => {
         if (req.session.cart) {
             const cart = req.session.cart; // object with product objects where key is product id, value - cart data
+            console.log(cart)
             const showCart = [];
             for (let p in cart.products) {  // creating iterrable array
+                const product = await Product.findById(p);
                 showCart.push({
                     id: p, // mongo product id
-                    product: cart.products[p] // product data
+                    product: cart.products[p], // product data
+                    imageUrl: product.image.url
                 })
             }
             return res.render("shopping/cart", { showCart, totals: cart.cartTotals });

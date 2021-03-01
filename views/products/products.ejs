@@ -14,7 +14,7 @@
             <% for(let product of category.products) {%>
                 <div class="card product_card">
                     <div class="product_image_container">
-                        <img src="/images/<%= product.model %>.jpg" class="card-img-top"
+                        <img src="<%= product.image.url %> " class="card-img-top"
                             alt="">
                     </div>
                     <div class="card-body">
