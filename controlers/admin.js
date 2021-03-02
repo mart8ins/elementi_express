@@ -1,4 +1,4 @@
-
+const cloudinary = require('cloudinary').v2;
 
 /*****************
     models
@@ -196,7 +196,11 @@ module.exports.deleteOrHideUnhideProduct = function () {
             const { id } = req.params;
             const { action } = req.query;
             if (action == "delete") {
-                await Product.deleteOne({ _id: id });
+                const product = await Product.findById({ _id: id });
+                // delete product image form cloudinary service
+                cloudinary.uploader.destroy(product.image.fileName);
+                // delete product from database
+                await product.delete();
                 res.redirect(`/manage/products`)
             }
             if (action == "hide") {

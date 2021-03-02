@@ -28,7 +28,7 @@ IMAGE UPLOAD USING MULTER, STORING IN CLOUDINARY SERVICE
  */
 const { storage } = require("../cloudinary/index");
 const multer = require("multer");
-const upload = multer({ storage })
+const upload = multer({ storage });
 
 
 /*****************

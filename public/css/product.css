@@ -68,6 +68,10 @@ background-color: white;
     padding: 10px;
 }
 
+.add_to_cart_btn {
+    margin-top: 5px;
+}
+
 .add_to_cart .pluss_minuss input {
     width: 80px;
     font-size: 25px;
@@ -75,6 +79,3 @@ background-color: white;
     margin: 0 auto;
 }
 
-.add_to_cart_btn {
-    margin-top: 5px;
-}

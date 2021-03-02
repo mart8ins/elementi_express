@@ -36,10 +36,10 @@ const productSchema = new Schema({
         required: true
     },
     image: {
-        url: {
+        fileName: {
             type: String
         },
-        fileName: {
+        url: {
             type: String
         }
     }

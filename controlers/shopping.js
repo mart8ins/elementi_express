@@ -7,7 +7,7 @@ const User = require("../models/user");
 const Order = require("../models/order");
 const Order_Number = require("../models/order_number");
 
-const orderNumberControlId = "60243bf048e05e080ce78ef2";// id for storing/controling order number
+// const orderNumberControlId = "60243bf048e05e080ce78ef2";// id for storing/controling order number
 const OrderNumberGenerator = require("../utils/orderNumberGenerator");
 
 /*****************
@@ -70,7 +70,7 @@ module.exports.createdNewOrder = function () {
         }
 
         // NEW ORDER NUMBER CREATION
-        const oldOrderNumber = await Order_Number.findById(orderNumberControlId);
+        const oldOrderNumber = await Order_Number.findById(process.env.ORDER_NUMBER_CONTROL_ID);
         let newOrderNumber = OrderNumberGenerator(oldOrderNumber.orderNumber);
         // for after checkout to use in locals and show in order success template
         req.session.orderNo = newOrderNumber;
