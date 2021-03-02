@@ -8,40 +8,47 @@
 
     <div class="container">
         <div class="row">
+
             <div class="card col-5 offset-3">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <%= loggedUser.username %>`s profile
-                    </h5>
-                    <img class="card-img-top" src="/images/no_user.png" alt="Card image cap">
-                </div>
-                <ul class="list-group list-group-flush">
+                <% if(success.length) {%>
+                    <p class="password_change_success">
+                        <%= success %>
+                    </p>
+                    <% } %>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= loggedUser.username %>`s profile
+                            </h5>
+                            <img class="card-img-top" src="/images/no_user.png" alt="Card image cap">
+                        </div>
+                        <ul class="list-group list-group-flush">
 
-                    <li class="list-group-item"><span class="text-muted">Full name:</span>
-                        <% if(loggedUser.delivery.firstName && loggedUser.delivery.lastName) {%>
-                            <%= loggedUser.delivery.firstName %>
-                                <%= loggedUser.delivery.lastName %>
-                                    <% } %>
-                    </li>
+                            <li class="list-group-item"><span class="text-muted">Full name:</span>
+                                <% if(loggedUser.delivery.firstName && loggedUser.delivery.lastName) {%>
+                                    <%= loggedUser.delivery.firstName %>
+                                        <%= loggedUser.delivery.lastName %>
+                                            <% } %>
+                            </li>
 
-                    <li class="list-group-item"><span class="text-muted">e-mail address:</span>
-                        <%= loggedUser.email %>
-                    </li>
-                    <li class="list-group-item"><span class="text-muted">Delivery address info:</span>
-                        <% if(loggedUser.delivery.address) {%>
-                            <%= loggedUser.delivery.address %>
-                                <% } %>
-                    </li>
-                    <li class="list-group-item"><span class="text-muted">Phone number:</span>
-                        <% if(loggedUser.delivery.phone) {%>
-                            <%= loggedUser.delivery.phone %>
-                                <% } %>
-                    </li>
-                </ul>
-                <div class="card-body">
-                    <a href="/user/<%= loggedUser._id %>/profile/edit" class="card-link">Edit profile</a>
-                    <a href="/user/<%= loggedUser._id %>/profile/changePassword" class="card-link">Change password</a>
-                </div>
+                            <li class="list-group-item"><span class="text-muted">e-mail address:</span>
+                                <%= loggedUser.email %>
+                            </li>
+                            <li class="list-group-item"><span class="text-muted">Delivery address info:</span>
+                                <% if(loggedUser.delivery.address) {%>
+                                    <%= loggedUser.delivery.address %>
+                                        <% } %>
+                            </li>
+                            <li class="list-group-item"><span class="text-muted">Phone number:</span>
+                                <% if(loggedUser.delivery.phone) {%>
+                                    <%= loggedUser.delivery.phone %>
+                                        <% } %>
+                            </li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="/user/<%= loggedUser._id %>/profile/edit" class="card-link">Edit profile</a>
+                            <a href="/user/<%= loggedUser._id %>/profile/change_password" class="card-link">Change
+                                password</a>
+                        </div>
             </div>
         </div>
     </div>

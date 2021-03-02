@@ -3,6 +3,7 @@
 *******************/
 const User = require("../models/user");
 const Order = require("../models/order");
+const AppError = require("../utils/ErrorHandling/AppError")
 
 /*****************
     async error catching
@@ -93,3 +94,37 @@ module.exports.renderUserOrderHistory = function () {
         res.render("user/orders", { userOrders });
     })
 }
+
+module.exports.renderChangePasswordPage = function () {
+    return catchAsync(async (req, res) => {
+        const { id } = req.params;
+        console.log(id)
+        res.render("user/change_password", { id })
+    })
+}
+
+module.exports.changePassword = function () {
+    return catchAsync(async (req, res) => {
+        const { id } = req.params;
+        const { oldPassword, newPassword, repeatNewPassword } = req.body;
+        // const user = await User.findById(id);
+        const changedPassword = await User.changePassword(id, oldPassword, newPassword, repeatNewPassword);
+        if (changedPassword) {
+            req.flash("success", "Password is changed!")
+            res.redirect(`/user/${id}/profile`);
+        } else {
+            req.flash("error", "Old password is incorrect or new passwords dont match!");
+            res.redirect(`/user/${id}/profile/change_password`);
+            // throw new AppError("Old password is incorrect or new passwords dont match!", 400);
+        }
+    })
+}
+
+
+
+
+// {
+//     oldPassword: 'fsf',
+//     newPassword: 'sfdsfs',
+//     repeatNewPassword: 'sdfsf'
+//   }

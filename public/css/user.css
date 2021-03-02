@@ -2,6 +2,10 @@
     margin-bottom: 40px;
 }
 
+.card-img-top {
+    border-radius: 10px;
+}
+
 /* user data edit form*/
 .user_profile_edit_profile_img {
 text-align: center;
@@ -10,6 +14,12 @@ text-align: center;
 .taken_username_email_error {
     color: red;
     text-align: center;
+}
+
+.password_change_success {
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
 }
 
 /* USER ORDER HISTORY*/

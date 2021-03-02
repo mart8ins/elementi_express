@@ -44,4 +44,16 @@ userSchema.statics.validateUser = async function (username, password) {
     }
 }
 
+userSchema.statics.changePassword = async function (userId, oldPassword, newPassword, repeatedNewPassword) {
+    const user = await this.findById(userId);
+
+    const passwordMatch = await bcrypt.compare(oldPassword, user.password);
+    if (passwordMatch && newPassword === repeatedNewPassword) {
+        const hash = await bcrypt.hash(newPassword, 12);
+        user.password = hash;
+        await user.save();
+        return true
+    }
+}
+
 module.exports = mongoose.model("User", userSchema);
