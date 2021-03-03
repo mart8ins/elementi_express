@@ -140,16 +140,11 @@ module.exports.editCategoryOrProduct = function () {
 }
 
 
-
-
-
-
 module.exports.deleteCategory = function () {
     return catchAsync(async (req, res) => {
         const { categoryID } = req.body;
         if (categoryID) {
             const deletedCategory = await Category.findByIdAndDelete({ _id: categoryID });
-            console.log(deletedCategory)
             cloudinary.uploader.destroy(deletedCategory.image.fileName);
         } else {
             throw new AppError("Missing category ID to delete category.", 400)

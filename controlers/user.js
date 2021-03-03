@@ -97,7 +97,6 @@ module.exports.renderUserOrderHistory = function () {
 module.exports.renderChangePasswordPage = function () {
     return catchAsync(async (req, res) => {
         const { id } = req.params;
-        console.log(id)
         res.render("user/change_password", { id })
     })
 }
