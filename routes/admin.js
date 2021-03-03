@@ -46,12 +46,12 @@ router.use((req, res, next) => {
 })
 
 /*****************
-    admin routes
+    admin routes   
 *******************/
 router.route("/products")
     .get(getProductsCategories())
-    .post(productValidation, categoryValidation, upload.single("newProduct[image]"), createProductOrCategory())
-    .patch(editCategoryOrProduct())
+    .post(productValidation, categoryValidation, upload.single("newProduct[image]"), createProductOrCategory()) // upload.single("newProduct[image]" is used also for category image upload
+    .patch(upload.single("editProduct[image]"), editCategoryOrProduct())
     .delete(deleteCategory())
 
 router.route("/products/:id/edit")

@@ -11,7 +11,15 @@ const categorySchema = new Schema({
     ,
     products: [
         { type: Schema.Types.ObjectId, ref: "Product" }
-    ]
+    ],
+    image: {
+        url: {
+            type: String
+        },
+        fileName: {
+            type: String
+        }
+    }
 })
 
 // mongoose midlleware - when category is deleted then also are deleted all asiociated products with this category

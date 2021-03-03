@@ -13,7 +13,8 @@
                 <div class="categories_nav">
                     <% for(let categ of categories) {%>
 
-                        <div class="category btn btn-outline-info" id="<%= categ._id %>">
+                        <div class="category" id="<%= categ._id %>"
+                            style="background-image: url('<%= categ.image.url %>')">
                             <a href="/products/<%= categ._id %>?category=<%= categ.category %> ">
                                 <p>
                                     <%= categ.category %>

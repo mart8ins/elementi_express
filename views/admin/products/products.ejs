@@ -94,7 +94,8 @@
                         add new category
             ************************************** -->
                 <div class="add_new_category">
-                    <form action="/manage/products" method="post" class="needs-validation" novalidate>
+                    <form action="/manage/products" method="post" class="needs-validation" enctype="multipart/form-data"
+                        novalidate>
                         <label class="form-label new_category_label" for="newCategory">New category</label>
 
 
@@ -105,7 +106,13 @@
 
                         <div class="create_category_container">
                             <input name="newCategory" type="text" class="form-control" name="newCategory"
-                                id="newCategory" required>
+                                id="newCategory" required placeholder="Kategorijas nosaukums">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupFile01">Kategorijas fona
+                                    bilde</label>
+                                <input type="file" name="newProduct[image]" class="form-control"
+                                    id="inputGroupFile01">
+                            </div>
                             <button class="btn btn-primary btn-sm">Create</button>
                         </div>
                     </form>

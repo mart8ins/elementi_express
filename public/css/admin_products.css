@@ -25,7 +25,7 @@
     justify-content: space-evenly;
 }
 
-.add_new_product form .category_container, .create_category_container  {
+.add_new_product form .category_container  {
     width: 40%;
     margin: 10px auto;
 }
@@ -66,6 +66,18 @@
 
 
 /* CREATE CATEGORY */
+.add_new_category form .create_category_container {
+    width: 100%;
+    margin: 0 auto 10px;
+}
+
+.add_new_category form .create_category_container label {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.add_new_category form .create_category_container input {
+    font-size: 0.8rem;
+}
 .add_new_category {
     background-color: #283747;
     color: white;
@@ -74,24 +86,25 @@
     text-align: center;
 }
 
-.add_new_category form .create_category_container {
-    display: flex;
-    width: 80%;
-}
-
 /* CHANGE CATEGORY */
 .avaliable_categories {
     display: flex;
     margin: 5px;
     background-color: rgba(0, 0, 0, 0.219);
 }
+
 .inputs_for_changing_category {
     display: flex;
     padding: 10px;
 }
 
+.inputs_for_changing_category input {
+    font-size: 0.8rem;
+}
+
 .current_category {
     font-weight: bold;
+    font-size: 0.8rem;
 }
 
 /* ALL MODELS VIEW */

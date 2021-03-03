@@ -21,13 +21,19 @@ module.exports.getProductsCategories = function () {
     })
 }
 
+
+// categoryImage
 module.exports.createProductOrCategory = function () {
     return catchAsync(async (req, res, next) => {
         const { newProduct, newCategory } = req.body;
         // if new product category is created
         if (newCategory) {
             const createdCategory = await new Category({
-                category: newCategory
+                category: newCategory,
+                image: {
+                    url: req.file.path,
+                    fileName: req.file.filename
+                }
             })
             req.flash("category-succes", `Successfuly created new category - ${newCategory}!`)
             await createdCategory.save();
@@ -91,8 +97,15 @@ module.exports.editCategoryOrProduct = function () {
                 description: editProduct.description,
                 onSale: editProduct.onSale
                 ,
-                category: cat // reference to category
+                category: cat, // reference to category
+                image: {
+                    url: req.file.path ? req.file.path : productBeforeUpdate.image.url,
+                    fileName: req.file.filename ? req.file.filename : productBeforeUpdate.image.fileName
+                }
             }, { new: true, useFindAndModify: false });
+
+            // if changed photo than delete old from cloudinary
+            req.file.filename ? cloudinary.uploader.destroy(productBeforeUpdate.image.fileName) : null;
 
             /* *******************************************
             if category changes then in old category i need to delete reference to the product, 
@@ -126,17 +139,25 @@ module.exports.editCategoryOrProduct = function () {
     })
 }
 
+
+
+
+
+
 module.exports.deleteCategory = function () {
     return catchAsync(async (req, res) => {
         const { categoryID } = req.body;
         if (categoryID) {
-            await Category.findByIdAndDelete({ _id: categoryID })
+            const deletedCategory = await Category.findByIdAndDelete({ _id: categoryID });
+            console.log(deletedCategory)
+            cloudinary.uploader.destroy(deletedCategory.image.fileName);
         } else {
             throw new AppError("Missing category ID to delete category.", 400)
         }
         res.redirect("/manage/products");
     })
 }
+
 
 module.exports.editProduct = function () {
     return catchAsync(async (req, res) => {

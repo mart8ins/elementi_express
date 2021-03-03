@@ -3,7 +3,6 @@
 *******************/
 const User = require("../models/user");
 const Order = require("../models/order");
-const AppError = require("../utils/ErrorHandling/AppError")
 
 /*****************
     async error catching
@@ -115,16 +114,6 @@ module.exports.changePassword = function () {
         } else {
             req.flash("error", "Old password is incorrect or new passwords dont match!");
             res.redirect(`/user/${id}/profile/change_password`);
-            // throw new AppError("Old password is incorrect or new passwords dont match!", 400);
         }
     })
 }
-
-
-
-
-// {
-//     oldPassword: 'fsf',
-//     newPassword: 'sfdsfs',
-//     repeatNewPassword: 'sdfsf'
-//   }
