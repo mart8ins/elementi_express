@@ -86,6 +86,17 @@ module.exports.editCategoryOrProduct = function () {
             const categoryIdforUpdatePurpose = productBeforeUpdate.category._id; // id for category in ref
             const categoryBeforeUpdate = productBeforeUpdate.category.category; // name for category
 
+            const changedImagePath = productBeforeUpdate.image.url;
+            const changedImageFileName = productBeforeUpdate.image.fileName;
+            if (req.file) {
+                changedImagePath = req.file.path;
+                changedImageFileName = req.file.filename;
+                // if changed photo than delete old from cloudinary
+                cloudinary.uploader.destroy(productBeforeUpdate.image.fileName)
+            }
+
+            console.log(productBeforeUpdate.image.url);
+            console.log(req.file);
             // updates edited product
             const updatedProduct = await Product.findByIdAndUpdate({ _id: id }, {
                 brand: editProduct.brand,
@@ -99,13 +110,13 @@ module.exports.editCategoryOrProduct = function () {
                 ,
                 category: cat, // reference to category
                 image: {
-                    url: req.file.path ? req.file.path : productBeforeUpdate.image.url,
-                    fileName: req.file.filename ? req.file.filename : productBeforeUpdate.image.fileName
+                    url: changedImagePath,
+                    fileName: changedImageFileName
                 }
             }, { new: true, useFindAndModify: false });
 
             // if changed photo than delete old from cloudinary
-            req.file.filename ? cloudinary.uploader.destroy(productBeforeUpdate.image.fileName) : null;
+            // req.file.filename ? cloudinary.uploader.destroy(productBeforeUpdate.image.fileName) : null;
 
             /* *******************************************
             if category changes then in old category i need to delete reference to the product, 

@@ -14,29 +14,37 @@
             <% for(let product of category.products) {%>
                 <% if(product.active) {%>
                     <div class="card product_card">
-                        <div class="product_image_container">
-                            <img src="<%= product.image.url %> " class="card-img-top"
-                                alt="">
-                        </div>
-                        <div class="card-body">
-                            <p class="card-title product_card_title">
-                                <strong>
-                                    <%= product.brand %>
-                                        <%= product.model %>
-                                </strong>
-                            </p>
-                            <p class="card-text">
-                                Cena <span class="newPriceShow">
-                                    <%= product.price.new %> &euro;
-                                </span>
+                        <% if(product.onSale) {%>
+                            <div class="saleout">
+                                Izpārdošana
+                            </div>
+                            <% } %>
+                                <div class="product_image_container">
+                                    <img src="<%= product.image.url %> " class="card-img-top"
+                                        alt="">
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title product_card_title">
+                                        <strong>
+                                            <%= product.brand %>
+                                                <%= product.model %>
+                                        </strong>
+                                    </p>
+                                    <p class="card-text">
+                                        Cena <span class="newPriceShow">
+                                            <%= product.price.new %> &euro;
+                                        </span>
 
-                                <span class="oldPriceShow">
-                                    <%= product.price.old %> &euro;
-                                </span>
-                            </p>
-                            <a href="/products/<%= category._id %>/<%= product._id %>"
-                                class="btn btn-primary btn-sm">Produkta info</a>
-                        </div>
+                                        <span class="oldPriceShow">
+                                            <%= product.price.old %>
+                                                <% if(product.price.old){%>
+                                                    &euro;
+                                                    <% } %>
+                                        </span>
+                                    </p>
+                                    <a href="/products/<%= category._id %>/<%= product._id %>"
+                                        class="btn btn-primary btn-sm">Produkta info</a>
+                                </div>
                     </div>
                     <% } %>
                         <% } %>

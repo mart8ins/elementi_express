@@ -9,9 +9,14 @@
     <div class="container product_details">
         <div class="row top-row">
             <div class="col-5">
-                <div class="product_image_container">
-                    <img src="<%= product.image.url %> " class="card-img-top" alt="<%= product.model %>">
-                </div>
+                <% if(product.onSale) {%>
+                    <div class="saleout">
+                        Izpārdošana
+                    </div>
+                    <% } %>
+                        <div class="product_image_container">
+                            <img src="<%= product.image.url %> " class="card-img-top" alt="<%= product.model %>">
+                        </div>
             </div>
             <div class="col-7">
                 <div class="model">
@@ -24,9 +29,13 @@
                             <span class="new_price">
                                 <%= product.price.new %> &euro;
                             </span>
-                            <span class="old_price">
-                                <%= product.price.new %> &euro;
-                            </span>
+                            <% if(product.price.old) {%>
+                                <span class="old_price">
+                                    <%= product.price.old %>
+
+                                        &euro;
+                                </span>
+                                <% } %>
                     </p>
 
 
@@ -45,7 +54,7 @@
                     <form action="/products/<%= categoryId %>/<%= product._id %>" method="post">
                         <div class="pluss_minuss">
                             <!-- <span><i class="fas fa-minus-circle"></i></span> -->
-                            <label for="quantity">Quantity</label>
+                            <label style="color: white;" for="quantity">Quantity</label>
                             <input name="product[quantity]" id="quantity" class="form-control" type="number"
                                 placeholder="0" min="1">
                             <!-- <span><i class="fa fa-plus-circle"></i></span></i> -->
