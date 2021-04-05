@@ -86,8 +86,8 @@ module.exports.editCategoryOrProduct = function () {
             const categoryIdforUpdatePurpose = productBeforeUpdate.category._id; // id for category in ref
             const categoryBeforeUpdate = productBeforeUpdate.category.category; // name for category
 
-            const changedImagePath = productBeforeUpdate.image.url;
-            const changedImageFileName = productBeforeUpdate.image.fileName;
+            let changedImagePath = productBeforeUpdate.image.url;
+            let changedImageFileName = productBeforeUpdate.image.fileName;
             if (req.file) {
                 changedImagePath = req.file.path;
                 changedImageFileName = req.file.filename;

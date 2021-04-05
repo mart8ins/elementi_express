@@ -1,0 +1,9 @@
+.container>div {
+    width: 30%;
+}
+
+@media screen and (max-width: 540px) {
+    .container>div {
+        width: 50%;
+    }
+}

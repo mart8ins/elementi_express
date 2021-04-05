@@ -1,3 +1,4 @@
+require('dotenv').config();
 /* *********
 express
 ************* */
@@ -7,11 +8,14 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
 
+const dbUrl = process.env.MONGO_DB_URL || "mongodb://localhost:27017/elementi";
+
+
 /* *********
 MONGO datu bāze
 ************* */
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/elementi", {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
@@ -59,7 +63,7 @@ const sessionOptions = {
     secret: "badsecret",
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    store: new MongoStore({ mongooseConnection: mongoose.connection, mongoUrl: dbUrl, touchAfter: 24 * 3600 }),
     cookie: { maxAge: 180 * 60 * 1000 }
 }
 app.use(session(sessionOptions));
@@ -129,7 +133,7 @@ app.use((err, req, res, next) => {
     res.render("error", { message, status })
 })
 
-
-app.listen(3000, () => {
-    console.log("App started on port 3000")
+const port = 3000;
+app.listen(port, () => {
+    console.log(`App started on port ${port}`)
 })

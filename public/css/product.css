@@ -2,6 +2,7 @@
     padding: 5px 100px;
     text-transform: uppercase;
 }
+
 .back_to_products a button {
     text-transform: uppercase;
     font-size: 16px;
@@ -14,12 +15,15 @@
     background-color: #214151;
     padding: 20px;
 }
+
 .product_image_container {
-background-color: white;
+    background-color: white;
+    height: 500px;
+    background-size: cover;
+    background-position: center center;
+
 }
-.product_image_container img {
-    padding: 20px;
-}
+
 
 .product_details .top-row .model p {
     background-color: white;
@@ -40,7 +44,8 @@ background-color: white;
     height: 75%;
 }
 
-.new_price, .old_price {
+.new_price,
+.old_price {
     position: relative;
     left: 20px;
     background-color: #314e52;
@@ -48,12 +53,13 @@ background-color: white;
     border-radius: 5px;
     color: white;
     letter-spacing: 1px;
- 
+
 }
 
 .new_price {
     font-size: 34px;
 }
+
 .old_price {
     left: 30px;
     text-decoration: line-through;
@@ -61,6 +67,7 @@ background-color: white;
     background-color: rgb(173, 154, 154);
     border-radius: 40px;
 }
+
 /*  */
 .add_to_cart {
     text-align: center;
@@ -100,33 +107,39 @@ background-color: white;
         display: flex;
         flex-direction: column;
     }
+
     .top-row {
         display: flex;
         flex-direction: column;
     }
+
     .product_image_container {
-        position: relative;
-        left: 140px;
+        width: 500px;
         margin-bottom: 20px;
     }
-    .model  {
+
+    .model {
         width: 450px;
-      
+
     }
-    .new_price, .old_price {
+
+    .new_price,
+    .old_price {
         font-size: 0.7rem;
     }
-  
+
     .description {
         position: relative;
         left: -5px;
         width: 450px;
         font-size: 0.9rem;
     }
+
     .bottom-row {
         position: relative;
         left: -110px;
     }
+
     .saleout {
         font-size: 0.9rem;
         left: 20px;

@@ -19,12 +19,11 @@
                                 Izpārdošana
                             </div>
                             <% } %>
-                                <div class="product_image_container">
-                                    <img src="<%= product.image.url %> " class="card-img-top"
-                                        alt="">
+                                <div class="product_image_container" style="background-image: url('<%= product.image.url %>');">
+                                    
                                 </div>
                                 <div class="card-body">
-                                    <p class="card-title product_card_title">
+                                    <p class="product_card_title">
                                         <strong>
                                             <%= product.brand %>
                                                 <%= product.model %>

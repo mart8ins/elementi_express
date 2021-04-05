@@ -2,6 +2,7 @@
     padding: 5px 100px;
     text-transform: uppercase;
 }
+
 .back_to_products a button {
     text-transform: uppercase;
     font-size: 16px;
@@ -9,19 +10,27 @@
 
 
 
-.what_we_are,.expierence, .competence, .wholesale {
+.what_we_are,
+.expierence,
+.competence,
+.wholesale {
     background-color: white;
     padding: 25px;
+    text-align: justify;
 }
 
-.what_we_are span,.expierence span, .competence span, .wholesale span {
+.what_we_are span,
+.expierence span,
+.competence span,
+.wholesale span {
     background-color: rgba(41, 5, 5, 0.9);
     font-size: 26px;
     padding: 5px;
     margin-top: 2px;
     color: white;
-    
+
 }
+
 .what_we_are_img {
     background-image: url("/images/about/what_we_are.jpg");
     background-size: cover;
@@ -100,4 +109,126 @@ footer div .brands p a {
 
 footer div .brands p:hover {
     background-color: rgba(20, 2, 2, 0.9);
+}
+
+@media screen and (max-width: 770px) {
+
+    .back_to_products {
+        padding: 5px;
+        text-transform: uppercase;
+    }
+
+    .back_to_products a button {
+        width: 100%;
+        font-size: 1.1rem;
+        color: white;
+        font-weight: bold;
+        border: 2px solid white;
+    }
+
+    .what_we_are,
+    .expierence,
+    .competence,
+    .wholesale {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        color: white;
+    }
+
+    .what_we_are span,
+    .expierence span,
+    .competence span,
+    .wholesale span {
+        background-color: rgba(41, 5, 5, 0.9);
+        font-size: 1rem;
+        padding: 2px;
+        color: white;
+    }
+
+    .text {
+        width: 100%;
+        text-align: justify;
+        padding: 5px;
+    }
+
+    .what_we_are div:nth-child(2) {
+        background-color: rgb(197, 111, 111);
+    }
+
+    .expierence div:nth-child(1) {
+        background-color: rgb(131, 211, 142);
+    }
+
+    .competence div:nth-child(2) {
+        background-color: rgb(119, 150, 207);
+    }
+
+    .wholesale div:nth-child(1) {
+        background-color: rgb(207, 198, 119);
+    }
+
+    .what_we_are_img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .expierence_img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .competence_img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .wholesale_img {
+        width: 100%;
+        height: 200px;
+    }
+
+    footer {
+        margin-top: 20px;
+        width: 100%;
+        background-color: rgba(82, 24, 24, 0.9);
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer ul {
+        padding: 10px;
+        margin: 0;
+        margin-top: 5px;
+        width: 100%;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+
+
+    footer div {
+        margin: 0px;
+        margin-top: 10px;
+        text-align: center;
+        width: 100%;
+    }
+
+    footer div h4 {
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 10px;
+        color: white;
+    }
+
+    footer div .brands {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    footer div .brands p {
+        display: block;
+        margin: 5px;
+    }
 }
