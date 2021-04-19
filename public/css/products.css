@@ -6,7 +6,7 @@
 
 .back_to_about a button {
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 
@@ -84,7 +84,7 @@
 }
 
 .card_container .product_card .product_image_container {
-    height: 250px;
+    height: 310px;
     margin: 5px;
     background-size: cover;
     background-position: center center;
@@ -135,13 +135,27 @@
 }
 
 
+@media screen and (max-width: 1260px) {
 
+    .back_to_about {
+        padding: 5px;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
+    .back_to_about a button {
+        text-transform: uppercase;
+        font-size: 1rem;
+        width: 45%;
+        font-weight: bold;
+        color: white;
+        border: 1px solid white;
+        letter-spacing: 2px;
+    }
 
-
-@media screen and (max-width: 1100px) {
     .categories_nav .category {
-        background-size: 240px;
+        background-size: 280px;
         width: 610px;
     }
 
@@ -150,36 +164,137 @@
         align-items: center;
     }
 
+
     .card_container .product_card {
-        width: 320px;
-        margin-top: 30px;
+        width: 250px;
+        margin-top: 10px;
+        padding: 0px;
+        height: 410px;
     }
+
+    .product_card .card-body .product_card_title {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .card-text {
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+    }
+
+    .product_card .card-body {
+        padding: 15px;
+        height: 100px;
+    }
+
+    .product_card .card-body .card-text .newPriceShow {
+        font-size: 0.9rem;
+    }
+
+    .product_card .card-body .card-text .oldPriceShow {
+        font-size: 0.8rem;
+    }
+
+    .card_container .product_card .product_image_container {
+        height: 240px;
+        background-size: 230px;
+        padding: 0;
+        margin: 0;
+    }
+
+
 }
 
+
 @media screen and (max-width: 600px) {
+    .back_to_about {
+        padding: 5px;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .back_to_about a button {
+        text-transform: uppercase;
+        font-size: 1rem;
+        width: 100%;
+        font-weight: bold;
+        color: white;
+        border: 1px solid white;
+        letter-spacing: 2px;
+
+    }
+
     .categories_nav {
-        max-width: 600px;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .categories_nav .category {
-        background-size: 280px;
-        width: 400px;
+        background-size: 150px;
+        max-width: 260px;
+        margin: 5px auto;
+        height: 200px;
+    }
+
+    .categories_nav .category a {
+        margin: 0;
+        padding: 0px;
+        box-shadow: 0px 2px 3px black;
+
     }
 
     .categories_nav .category a p {
         background-color: rgba(0, 0, 0, 0.922);
         font-size: 1.5rem;
+        margin: 0;
     }
+
 
     .card_container {
         flex-direction: column;
         align-items: center;
+        color: black;
     }
 
     .card_container .product_card {
-        width: 300px;
-        margin-top: 30px;
+        width: 250px;
+        margin-top: 10px;
+        padding: 0px;
+        height: 410px;
+    }
+
+    .product_card .card-body .product_card_title {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .card-text {
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+    }
+
+    .product_card .card-body {
+        padding: 15px;
+        height: 100px;
+    }
+
+    .product_card .card-body .card-text .newPriceShow {
+        font-size: 0.9rem;
+    }
+
+    .product_card .card-body .card-text .oldPriceShow {
+        font-size: 0.8rem;
+    }
+
+    .card_container .product_card .product_image_container {
+        height: 240px;
+        background-size: 230px;
+        padding: 0;
+        margin: 0;
     }
 }

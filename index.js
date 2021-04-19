@@ -55,12 +55,13 @@ app.use(morgan('tiny')) // izlogo konkrētus propertijus konsolē
 COOKIES parser
 ************* */
 app.use(cookieParser());
+const secret = process.env.SECRET || "realybadsecret";
 
 /* *********
 express session
 ************* */
 const sessionOptions = {
-    secret: "badsecret",
+    secret,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection, mongoUrl: dbUrl, touchAfter: 24 * 3600 }),
