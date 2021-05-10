@@ -134,7 +134,7 @@ app.use((err, req, res, next) => {
     res.render("error", { message, status })
 })
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`App started on port ${port}`)
 })
