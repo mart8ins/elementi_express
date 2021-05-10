@@ -1,4 +1,4 @@
-const Joi = require("Joi");
+const Joi = require("joi");
 const User = require("../../models/user");
 
 module.exports = async function registrationValidation(req, res, next) {
