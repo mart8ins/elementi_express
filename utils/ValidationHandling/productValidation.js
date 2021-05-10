@@ -1,4 +1,4 @@
-const Joi = require("Joi");
+const Joi = require("joi");
 const AppError = require("../ErrorHandling/AppError");
 
 module.exports = function validateProduct(req, res, next) {
