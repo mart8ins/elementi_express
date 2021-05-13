@@ -73,7 +73,7 @@ module.exports.registerUser = function () {
 }
 
 module.exports.logoutUser = function () {
-    return catchAsync((req, res) => {
+    return catchAsync(async (req, res) => {
         req.session.user_id = null;
         req.session.user_name = null;
         req.session.isAdmin = null;
