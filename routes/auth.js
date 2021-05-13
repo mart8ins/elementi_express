@@ -22,7 +22,7 @@ router.route("/register")
 /************
  LOGOUT BUTTON
 *************/
-router.route("/")
+router.route("/logout")
     .post(logoutUser())
 
 module.exports = router;
