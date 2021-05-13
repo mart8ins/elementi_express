@@ -77,6 +77,6 @@ module.exports.logoutUser = function () {
         req.session.user_id = null;
         req.session.user_name = null;
         req.session.isAdmin = null;
-        res.redirect("/");
+        res.redirect("/login");
     })
 }
