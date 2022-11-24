@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 /* *********
 express
 ************* */
@@ -10,7 +10,6 @@ const flash = require("connect-flash");
 
 const dbUrl = process.env.MONGO_DB_URL || "mongodb://localhost:27017/elementi";
 
-
 /* *********
 MONGO datu bāze
 ************* */
@@ -18,8 +17,8 @@ const mongoose = require("mongoose");
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
-})
+    useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 db.on("error", console.error.bind("error occured: "));
 db.once("open", () => {
@@ -42,14 +41,13 @@ app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "/views")); // uzstāda to, ka tiek meklēts faili iekš views foldera
 app.set("view engine", "ejs"); // specificē faila extension, lai turpmāk nav jānorāda
 
-
 /* *********
 middleware - operācijas, kas tiek sauktas starp request un response objektiem
 ************* */
 app.use(express.urlencoded({ extended: true })); // request body parsers
 app.use(express.static("public")); // static failu servēšana, public - root folderis
 app.use(methodOverride("_method")); // lai var izmantot update and delete verbus
-app.use(morgan('tiny')) // izlogo konkrētus propertijus konsolē
+app.use(morgan("tiny")); // izlogo konkrētus propertijus konsolē
 
 /* *********
 COOKIES parser
@@ -65,8 +63,8 @@ const sessionOptions = {
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection, mongoUrl: dbUrl, touchAfter: 24 * 3600 }),
-    cookie: { maxAge: 180 * 60 * 1000 }
-}
+    cookie: { maxAge: 180 * 60 * 1000 },
+};
 app.use(session(sessionOptions));
 
 /* *********
@@ -90,10 +88,9 @@ app.use((req, res, next) => {
     res.locals.userLoggedInName = req.session.user_name;
     res.locals.isAdmin = req.session.isAdmin;
     res.locals.orderNo = req.session.orderNo;
-    req.session.cart ? res.locals.cart_total = req.session.cart.cartTotals.quantity : res.locals.cart_total = null;
+    req.session.cart ? (res.locals.cart_total = req.session.cart.cartTotals.quantity) : (res.locals.cart_total = null);
     next();
-})
-
+});
 
 /* *********
 ROUTES IMPORTS 
@@ -105,7 +102,6 @@ const productsRoutes = require("./routes/products");
 const userRoutes = require("./routes/user");
 const shoppingRoutes = require("./routes/shopping");
 
-
 /* *********
 ROUTES USE
 ************* */
@@ -116,25 +112,22 @@ app.use("/products", productsRoutes);
 app.use("/user", userRoutes);
 app.use("/shopping", shoppingRoutes);
 
-
-
 /* *********
  IF PAGE NOT FOUND PAGE 
 ************* */
 app.use((req, res) => {
     throw new AppError("Page no found", 404);
-})
-
+});
 
 /* *********
 ERROR MIDLLEWARE 
 ************* */
 app.use((err, req, res, next) => {
     const { message = "Something went wrong!", status = 500 } = err;
-    res.render("error", { message, status })
-})
+    res.render("error", { message, status });
+});
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
-    console.log(`App started on port ${port}`)
-})
+    console.log(`App started on port ${port}`);
+});
